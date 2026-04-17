@@ -1191,9 +1191,153 @@
           <div class="h-[4px] bg-gray-800 w-12"></div>
         </div>
       </section>
+      <script>
+    // GHOST OS PRODUCTION UPLINK
+    const BACKEND_URL = "https://22fqr-ghost-os-backend.hf.space";
 
-     <script>async function executeHoleheScan(){const email = document.getElementById("target-email").value; const log = document.getElementById("results-log"); const output = document.getElementById("scan-output"); if(!email) return; output.classList.remove("hidden"); log.innerHTML = "<div class=\"text-[#00FF41] animate-pulse\">> [SYSTEM] INITIATING_MULTI-VECTOR_OSINT_SCAN...</div>"; try { const response = await fetch("http://localhost:5001/scan", { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({email}) }); const data = await response.json(); log.innerHTML = ""; /* 1. FOOTPRINT_INTEL */ log.innerHTML += "<div class='text-[#8f00ff] font-bold mt-4 mb-2'>[FOOTPRINT_INTEL]</div>"; if(data.holehe && data.holehe.length > 0){ data.holehe.forEach(h => { log.innerHTML += `<div class="flex justify-between border-b border-white/5 py-1"><span class="text-[#00FF41]">> ${h}</span><span class="text-[#8f00ff] font-bold">[VERIFIED]</span></div>`; }); } else { log.innerHTML += "<div class='text-gray-600 italic'>> NO_DATA_DETECTED</div>"; } /* 2. IDENTITY_INTEL */ log.innerHTML += "<div class='text-[#8f00ff] font-bold mt-6 mb-2'>[IDENTITY_INTEL]</div>"; if(data.blackbird && data.blackbird.length > 0){ data.blackbird.forEach(b => { log.innerHTML += `<div class="text-[#00FF41] py-1">> ${b}</div>`; }); } else { log.innerHTML += "<div class='text-gray-600 italic'>> NO_DATA_DETECTED</div>"; } /* 3. BREACH_INTEL */ log.innerHTML += "<div class='text-[#ff003c] font-bold mt-6 mb-2'>[BREACH_INTEL]</div>"; if(data.h8mail && data.h8mail.length > 0){ data.h8mail.forEach(m => { log.innerHTML += `<div class="flex justify-between border-b border-white/5 py-1"><span class="text-[#ff003c]">> ${m}</span><span class="text-[#ff003c] font-bold">[COMPROMISED]</span></div>`; }); } else { log.innerHTML += "<div class='text-gray-600 italic'>> NO_DATA_DETECTED</div>"; } } catch(e) { log.innerHTML += "<div class=\"text-[#ff003c]\">> [ERROR] UPLINK_FAILED. IS_BACKEND_RUNNING?</div>"; }} function generateHashes(){const t=document.getElementById("hash-input").value; const algo=document.getElementById("algo-select").value; const out=document.getElementById("out-hash"); const label=document.getElementById("hash-label"); label.innerText=`[${algo}_OUTPUT]`; if(!t){out.innerText="AWAITING_INPUT...";return;} if(algo==="Base64"){out.innerText=btoa(t);} else if(algo==="Hex"){out.innerText=t.split("").map(c=>c.charCodeAt(0).toString(16).padStart(2,"0")).join("");} else {out.innerText=CryptoJS[algo](t).toString();}} function generatePass(){const l=document.getElementById("pass-length").value; const n=document.getElementById("use-numbers").checked; const s=document.getElementById("use-symbols").checked; let c="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"; if(n)c+="0123456789"; if(s)c+="!@#$%^&*()_+~`|}{[]:;?><,./-="; let r=""; const a=new Uint32Array(parseInt(l)); window.crypto.getRandomValues(a); for(let i=0;i<l;i++){r+=c.charAt(a[i]%c.length);} document.getElementById("pass-display").innerText=r;} async function executeDnsLookup(){const domain = document.getElementById("target-domain").value; const log = document.getElementById("dns-log"); const output = document.getElementById("dns-output"); if(!domain) return; output.classList.remove("hidden"); log.innerHTML = "<div class=\"text-[#00f3ff] animate-pulse\">> [SYSTEM] INITIATING_DNS_RECONNAISSANCE...</div>"; try { const response = await fetch("http://localhost:5001/dns", { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({domain}) }); const data = await response.json(); log.innerHTML = ""; if(data.error){ log.innerHTML = `<div class="text-[#ff003c]">> [ERROR] ${data.error}</div>`; return; } Object.keys(data).forEach(type => { if(data[type].length > 0){ data[type].forEach(val => { log.innerHTML += `<div class="flex justify-between border-b border-white/5 py-1"><span class="text-[#00f3ff]">> ${val}</span><span class="text-[#00f3ff] font-bold">[${type}]</span></div>`; }); } else { log.innerHTML += `<div class="text-gray-600 italic">> NO_${type}_RECORDS_FOUND</div>`; } }); } catch(e) { log.innerHTML += "<div class=\"text-[#ff003c]\">> [ERROR] UPLINK_FAILED. IS_BACKEND_RUNNING?</div>"; }} async function executeSpecterScan(){const username = document.getElementById("specter-target").value; const log = document.getElementById("specter-results"); const output = document.getElementById("specter-output"); if(!username) return; output.classList.remove("hidden"); log.innerHTML = "<div class=\"text-[#ffb000] animate-pulse\">> [SYSTEM] INITIATING_SPECTER_USERNAME_RECON...</div>"; try { const response = await fetch("http://localhost:5001/alias", { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({username}) }); const data = await response.json(); log.innerHTML = `<div class='text-gray-500 mb-2'>> SCANNED: ${data.scanned} | FOUND: ${data.found.length}</div>`; if(data.found.length > 0){ data.found.forEach(url => { log.innerHTML += `<div class="py-1"><a href="${url}" target="_blank" class="text-[#00FF41] hover:text-[#ffb000] transition-colors">> ${url}</a></div>`; }); } else { log.innerHTML += "<div class='text-gray-600 italic'>> NO_PROFILES_FOUND</div>"; } } catch(e) { log.innerHTML += "<div class=\"text-[#ff003c]\">> [ERROR] UPLINK_FAILED. IS_BACKEND_RUNNING?</div>"; }} document.addEventListener("DOMContentLoaded",()=>{if(document.getElementById("pass-length"))generatePass();});</script>
-    <script src="terminal.js?v=2"></script>
+    async function executeHoleheScan() {
+        const email = document.getElementById("target-email").value; 
+        const log = document.getElementById("results-log"); 
+        const output = document.getElementById("scan-output"); 
+        if(!email) return; 
+        
+        output.classList.remove("hidden"); 
+        log.innerHTML = "<div class=\"text-[#00FF41] animate-pulse\">> [SYSTEM] INITIATING_MULTI-VECTOR_OSINT_SCAN...</div>"; 
+        
+        try { 
+            const response = await fetch(`${BACKEND_URL}/scan`, { 
+                method: "POST", 
+                headers: {"Content-Type": "application/json"}, 
+                body: JSON.stringify({email}) 
+            }); 
+            const data = await response.json(); 
+            log.innerHTML = ""; 
+            
+            /* 1. FOOTPRINT_INTEL */ 
+            log.innerHTML += "<div class='text-[#8f00ff] font-bold mt-4 mb-2'>[FOOTPRINT_INTEL]</div>"; 
+            if(data.holehe && data.holehe.length > 0){ 
+                data.holehe.forEach(h => { log.innerHTML += `<div class="flex justify-between border-b border-white/5 py-1"><span class="text-[#00FF41]">> ${h}</span><span class="text-[#8f00ff] font-bold">[VERIFIED]</span></div>`; }); 
+            } else { 
+                log.innerHTML += "<div class='text-gray-600 italic'>> NO_DATA_DETECTED</div>"; 
+            } 
+            
+            /* 2. IDENTITY_INTEL */ 
+            log.innerHTML += "<div class='text-[#8f00ff] font-bold mt-6 mb-2'>[IDENTITY_INTEL]</div>"; 
+            if(data.blackbird && data.blackbird.length > 0){ 
+                data.blackbird.forEach(b => { log.innerHTML += `<div class="text-[#00FF41] py-1">> ${b}</div>`; }); 
+            } else { 
+                log.innerHTML += "<div class='text-gray-600 italic'>> NO_DATA_DETECTED</div>"; 
+            } 
+            
+            /* 3. BREACH_INTEL */ 
+            log.innerHTML += "<div class='text-[#ff003c] font-bold mt-6 mb-2'>[BREACH_INTEL]</div>"; 
+            if(data.h8mail && data.h8mail.length > 0){ 
+                data.h8mail.forEach(m => { log.innerHTML += `<div class="flex justify-between border-b border-white/5 py-1"><span class="text-[#ff003c]">> ${m}</span><span class="text-[#ff003c] font-bold">[COMPROMISED]</span></div>`; }); 
+            } else { 
+                log.innerHTML += "<div class='text-gray-600 italic'>> NO_DATA_DETECTED</div>"; 
+            } 
+        } catch(e) { 
+            log.innerHTML += "<div class=\"text-[#ff003c]\">> [ERROR] UPLINK_FAILED. IS_BACKEND_RUNNING?</div>"; 
+        }
+    } 
+
+    function generateHashes() {
+        const t = document.getElementById("hash-input").value; 
+        const algo = document.getElementById("algo-select").value; 
+        const out = document.getElementById("out-hash"); 
+        const label = document.getElementById("hash-label"); 
+        
+        label.innerText = `[${algo}_OUTPUT]`; 
+        if(!t){ out.innerText = "AWAITING_INPUT..."; return; } 
+        
+        if(algo === "Base64"){ out.innerText = btoa(t); } 
+        else if(algo === "Hex"){ out.innerText = t.split("").map(c=>c.charCodeAt(0).toString(16).padStart(2,"0")).join(""); } 
+        else { out.innerText = CryptoJS[algo](t).toString(); }
+    } 
+
+    function generatePass() {
+        const l = document.getElementById("pass-length").value; 
+        const n = document.getElementById("use-numbers").checked; 
+        const s = document.getElementById("use-symbols").checked; 
+        let c = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
+        
+        if(n) c += "0123456789"; 
+        if(s) c += "!@#$%^&*()_+~`|}{[]:;?><,./-="; 
+        
+        let r = ""; 
+        const a = new Uint32Array(parseInt(l)); 
+        window.crypto.getRandomValues(a); 
+        for(let i=0; i<l; i++){ r += c.charAt(a[i] % c.length); } 
+        document.getElementById("pass-display").innerText = r;
+    } 
+
+    async function executeDnsLookup() {
+        const domain = document.getElementById("target-domain").value; 
+        const log = document.getElementById("dns-log"); 
+        const output = document.getElementById("dns-output"); 
+        if(!domain) return; 
+        
+        output.classList.remove("hidden"); 
+        log.innerHTML = "<div class=\"text-[#00f3ff] animate-pulse\">> [SYSTEM] INITIATING_DNS_RECONNAISSANCE...</div>"; 
+        
+        try { 
+            const response = await fetch(`${BACKEND_URL}/dns`, { 
+                method: "POST", 
+                headers: {"Content-Type": "application/json"}, 
+                body: JSON.stringify({domain}) 
+            }); 
+            const data = await response.json(); 
+            log.innerHTML = ""; 
+            
+            if(data.error){ log.innerHTML = `<div class="text-[#ff003c]">> [ERROR] ${data.error}</div>`; return; } 
+            
+            Object.keys(data).forEach(type => { 
+                if(data[type].length > 0){ 
+                    data[type].forEach(val => { log.innerHTML += `<div class="flex justify-between border-b border-white/5 py-1"><span class="text-[#00f3ff]">> ${val}</span><span class="text-[#00f3ff] font-bold">[${type}]</span></div>`; }); 
+                } else { 
+                    log.innerHTML += `<div class="text-gray-600 italic">> NO_${type}_RECORDS_FOUND</div>`; 
+                } 
+            }); 
+        } catch(e) { 
+            log.innerHTML += "<div class=\"text-[#ff003c]\">> [ERROR] UPLINK_FAILED. IS_BACKEND_RUNNING?</div>"; 
+        }
+    } 
+
+    async function executeSpecterScan() {
+        const username = document.getElementById("specter-target").value; 
+        const log = document.getElementById("specter-results"); 
+        const output = document.getElementById("specter-output"); 
+        if(!username) return; 
+        
+        output.classList.remove("hidden"); 
+        log.innerHTML = "<div class=\"text-[#ffb000] animate-pulse\">> [SYSTEM] INITIATING_SPECTER_USERNAME_RECON...</div>"; 
+        
+        try { 
+            const response = await fetch(`${BACKEND_URL}/alias`, { 
+                method: "POST", 
+                headers: {"Content-Type": "application/json"}, 
+                body: JSON.stringify({username}) 
+            }); 
+            const data = await response.json(); 
+            log.innerHTML = `<div class='text-gray-500 mb-2'>> SCANNED: ${data.scanned} | FOUND: ${data.found.length}</div>`; 
+            
+            if(data.found.length > 0){ 
+                data.found.forEach(url => { log.innerHTML += `<div class="py-1"><a href="${url}" target="_blank" class="text-[#00FF41] hover:text-[#ffb000] transition-colors">> ${url}</a></div>`; }); 
+            } else { 
+                log.innerHTML += "<div class='text-gray-600 italic'>> NO_PROFILES_FOUND</div>"; 
+            } 
+        } catch(e) { 
+            log.innerHTML += "<div class=\"text-[#ff003c]\">> [ERROR] UPLINK_FAILED. IS_BACKEND_RUNNING?</div>"; 
+        }
+    } 
+
+    document.addEventListener("DOMContentLoaded", () => {
+        if(document.getElementById("pass-length")) generatePass();
+    });
+</script>
+
+
+   <script src="terminal.js?v=2"></script>
    <script src="bg.js"></script>
 <script src="deadswitch.js"></script>
 </body>
