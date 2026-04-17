@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>22fqr // Toolkit_Expansion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;500;700&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        @keyframes flicker { 0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; } 20%, 24%, 55% { opacity: 0.3; } }
+        .animate-flicker { animation: flicker 3s infinite; }
+        
+        /* ARCADE OVERHAUL CORE */
+        .arcade-header { opacity: 1; }
+
+        @keyframes cursor-blink {
+            0%, 49% { border-right-color: transparent; }
+            50%, 100% { border-right-color: currentColor; }
+        }
+        .data-entry-input {
+            border: 4px solid #000 !important;
+            border-radius: 0 !important;
+            background: #050505 !important;
+            box-shadow: 4px 4px 0px rgba(255,255,255,0.1);
+            caret-color: transparent;
+        }
+        .data-entry-input:focus {
+            animation: cursor-blink 0.8s steps(2) infinite;
+            border-right: 8px solid currentColor !important;
+        }
+
+        .arcade-btn {
+            position: relative;
+            border-radius: 0 !important;
+            border-bottom-width: 6px !important;
+            border-right-width: 6px !important;
+            border-color: rgba(0,0,0,0.5) !important;
+            transition: none !important;
+        }
+        .arcade-btn:active {
+            transform: translate(2px, 2px);
+            border-bottom-width: 2px !important;
+            border-right-width: 2px !important;
+        }
+
+        .crt-log {
+            background: #020202 !important;
+            border: 2px solid #111 !important;
+            position: relative;
+            overflow: hidden;
+        }
+        .crt-log::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 2;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        @keyframes arcade-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-arcade-spin { animation: arcade-spin 4s steps(8) infinite; }
+
+        /* 8-BIT TOOL ANIMATIONS */
+        @keyframes specter-scan {
+            0% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
+            100% { transform: translateX(-10px); }
+        }
+        .animate-specter { animation: specter-scan 1s steps(4) infinite; }
+
+        @keyframes trace-pulse {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+        .animate-trace-pulse { animation: trace-pulse 1s steps(3) infinite; }
+
+        @keyframes dns-orbit {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(16px, 0); }
+            50% { transform: translate(16px, 16px); }
+            75% { transform: translate(0, 16px); }
+            100% { transform: translate(0, 0); }
+        }
+        .animate-dns-orbit { animation: dns-orbit 2s steps(8) infinite; }
+
+        @keyframes shield-pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(0.9); opacity: 0.7; }
+        }
+        .animate-shield-pulse { animation: shield-pulse 1.5s steps(3) infinite; }
+
+        @keyframes satellite-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+        .animate-satellite-float { animation: satellite-float 2s steps(4) infinite; }
+
+        @keyframes telescope-tilt {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(-15deg); }
+        }
+        .animate-telescope { transform-origin: bottom left; animation: telescope-tilt 3s steps(3) infinite; }
+
+        @keyframes binary-vertical-scroll {
+            from { transform: translateY(0); }
+            to { transform: translateY(-50%); }
+        }
+        .animate-binary-scroll {
+            animation: binary-vertical-scroll 1.5s steps(6) infinite;
+        }
+
+        @keyframes cipher-snap {
+            0%, 90% { transform: translateY(0); }
+            95% { transform: translateY(-4px); }
+        }
+        .animate-cipher-snap { animation: cipher-snap 3s steps(1) infinite; }
+
+        @keyframes vault-lock-snap {
+            0%, 50% { transform: translateY(0); }
+            55%, 95% { transform: translateY(-3px); }
+            100% { transform: translateY(0); }
+        }
+        .animate-vault-lock { animation: vault-lock-snap 2s steps(1) infinite; }
+
+        @keyframes shield-glitch {
+            0%, 100% { fill: #ff003c; }
+            50% { fill: #fff; }
+        }
+        .animate-shield-glitch { animation: shield-glitch 0.2s steps(2) infinite; }
+
+        @keyframes web-pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(0.92); opacity: 0.8; }
+        }
+        .animate-web-pulse { animation: web-pulse 2s steps(4) infinite; }
+
+        @keyframes spider-drop {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(15px); }
+        }
+        .animate-spider-drop { animation: spider-drop 2s steps(5) infinite; }
+
+        /* BACKGROUND ENGINE STYLES */
+        .cyber-grid {
+            position: fixed; inset: 0;
+            background-image: linear-gradient(to right, #ffffff05 1px, transparent 1px),
+                              linear-gradient(to bottom, #ffffff05 1px, transparent 1px);
+            background-size: 40px 40px; z-index: -1; pointer-events: none;
+        }
+        .noise-layer {
+            position: fixed; inset: 0; z-index: -2; opacity: 0.05; pointer-events: none;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+        }
+        .vignette {
+            position: fixed; inset: 0; z-index: 1; pointer-events: none;
+            background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.8) 100%);
+        }
+        #cyber-canvas { position: fixed; inset: 0; z-index: 0; background: #050505; }
+    </style>
+</head>
+<body class="antialiased text-gray-300 overflow-x-hidden selection:bg-[#ff003c] selection:text-white bg-[#050505]">
+
+    <div id="boot-screen" class="fixed inset-0 bg-black z-[100] p-10 overflow-hidden flex flex-col justify-end transition-opacity duration-1000">
+      <div id="boot-text" class="max-w-2xl font-mono text-[#00FF41] text-xs leading-relaxed"></div>
+      <div class="animate-pulse text-green-500 font-mono text-sm mt-2">_</div>
+    </div>
+    <div class="vignette"></div>
+    <div class="noise-layer"></div>
+    <div class="cyber-grid"></div>
+    <canvas id="cyber-canvas" class="fixed inset-0 z-0 pointer-events-none opacity-40"></canvas>
+    <div class="crt-overlay"></div>
+
+    <nav class="fixed w-full z-50 px-6 py-4 bg-[#030303]/80 backdrop-blur-md border-b border-[#00f3ff]/10">
+        <div class="max-w-[1800px] mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-2 group cursor-pointer" onclick="window.location.href='index.html'">
+                <div class="w-2 h-2 bg-[#ff003c] animate-pulse rounded-sm shadow-[0_0_10px_#ff003c]"></div>
+                <div class="cyber-font text-[#e0e0e0] font-bold text-lg tracking-[0.2em] group-hover:text-[#00f3ff] transition duration-300">22fqr</div>
+            </div>
+            <div class="hidden md:flex space-x-10 mono text-[10px] uppercase tracking-[0.2em]">
+                <a href="index.html" class="nav-link hover:text-[#00f3ff] transition">HOME</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container-wide pt-32 px-6 relative z-10">
+        <div class="text-center mb-16">
+            <h1 class="text-6xl md:text-8xl font-black text-white leading-[0.85] mb-8 tracking-tighter cyber-font drop-shadow-2xl">
+                <span class="text-[#ff003c]">TOOLKIT_EXPANSION</span>
+            </h1>
+        </div>
+
+        <div id="tools-grid" class="max-w-6xl mx-auto my-20 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <section id="specter-scanner" class="p-8 border-4 border-[#ffb000] bg-[#050505] flex flex-col relative shadow-[8px_8px_0px_#000] outline-none">
+                <div class='flex items-center gap-4 mb-6'>
+                    <div class='relative w-12 h-12 shrink-0 flex items-center justify-center'>
+                        <!-- 8-bit Satellite -->
+                        <svg viewBox="0 0 16 16" fill="#ffb000" class="w-10 h-10 animate-satellite-float" style="shape-rendering: crispEdges;">
+                            <rect x="0" y="5" width="3" height="6" /> <!-- Left Panel -->
+                            <rect x="13" y="5" width="3" height="6" /> <!-- Right Panel -->
+                            <rect x="3" y="7" width="10" height="2" /> <!-- Connection -->
+                            <rect x="6" y="4" width="4" height="8" /> <!-- Body -->
+                            <rect x="7" y="1" width="2" height="3" /> <!-- Antenna -->
+                        </svg>
+                    </div>
+                    <h2 class='text-[#FBFFFF] font-mono text-xl tracking-widest uppercase mt-1 arcade-header'>SPECTER [USERNAME-OSINT]</h2>
+                </div>
+                <div class="flex flex-col md:flex-row gap-4">
+                    <input type="text" id="specter-target" placeholder="TARGET_USERNAME..." class="flex-1 data-entry-input text-[#ffb000] p-4 font-mono focus:outline-none">
+                    <button onclick="executeSpecterScan()" class="arcade-btn bg-[#ffb000] text-black font-bold px-8 py-4 uppercase tracking-tighter">EXECUTE</button>
+                </div>
+                <div id="specter-output" class="hidden mt-8 p-6 crt-log font-mono text-xs md:text-sm overflow-y-auto max-h-48 flex-1">
+                    <div id="specter-results" class="space-y-1 text-[#ffb000]"></div>
+                </div>
+            </section>
+
+            <section id="holehe-scanner" class="p-8 border-4 border-[#8f00ff] bg-[#050505] flex flex-col relative shadow-[8px_8px_0px_#000] outline-none">
+                <div class='flex items-center gap-4 mb-6'>
+                    <div class='relative w-12 h-12 shrink-0 flex items-center justify-center'>
+                        <!-- 8-bit Telescope -->
+                        <svg viewBox="0 0 16 16" fill="#8f00ff" class="w-10 h-10 animate-telescope" style="shape-rendering: crispEdges;">
+                            <path d="M12 2h3v3h-1V3h-2zM9 5h3v3h-1V6h-2zM6 8h3v3h-1V9H6zM3 11h3v3h-1v-2H3z" />
+                            <rect x="14" y="1" width="2" height="2" opacity="0.5" />
+                            <rect x="1" y="13" width="3" height="1" />
+                        </svg>
+                    </div>
+                    <h2 class='text-[#FBFFFF] font-mono text-xl tracking-widest uppercase mt-1 arcade-header'>TRACE [EMAIL-OSINT]</h2>
+                </div>
+                <div class="flex flex-col md:flex-row gap-4">
+                    <input type="email" id="target-email" placeholder="TARGET_EMAIL..." class="flex-1 data-entry-input text-[#8f00ff] p-4 font-mono focus:outline-none">
+                    <button onclick="executeHoleheScan()" class="arcade-btn bg-[#8f00ff] text-black font-bold px-8 py-4 uppercase tracking-tighter">INITIATE</button>
+                </div>
+                <div id="scan-output" class="hidden mt-8 p-6 crt-log font-mono text-xs md:text-sm overflow-y-auto max-h-64 flex-1">
+                    <div id="results-log" class="space-y-1 text-[#8f00ff]"></div>
+                </div>
+            </section>
+
+            <section id="dns-recon" class="p-8 border-4 border-[#00f3ff] bg-[#050505] flex flex-col relative shadow-[8px_8px_0px_#000] outline-none">
+                <div class='flex items-center gap-4 mb-6'>
+                    <div class='relative w-12 h-12 shrink-0 flex items-center justify-center'>
+                        <!-- 8-bit Shield -->
+                        <svg viewBox="0 0 16 16" fill="#00f3ff" class="w-10 h-10 animate-shield-pulse" style="shape-rendering: crispEdges;">
+                            <path d="M1 2h14v1H1zM2 3h12v1h-12zM3 4h10v1H3zM4 5h8v5h-8zM5 10h6v1h-6zM6 11h4v1h-4zM7 12h2v1h-2z" />
+                        </svg>
+                    </div>
+                    <h2 class='text-[#FBFFFF] font-mono text-xl tracking-widest uppercase mt-1 arcade-header'>DNS_RECON</h2>
+                </div>
+                <div class="flex flex-col md:flex-row gap-4">
+                    <input type="text" id="target-domain" placeholder="TARGET_DOMAIN..." class="flex-1 data-entry-input text-[#00f3ff] p-4 font-mono focus:outline-none">
+                    <button onclick="executeDnsLookup()" class="arcade-btn bg-[#00f3ff] text-black font-bold px-8 py-4 uppercase tracking-tighter">INITIATE</button>
+                </div>
+                <div id="dns-output" class="hidden mt-8 p-6 crt-log font-mono text-xs md:text-sm overflow-y-auto max-h-64 flex-1">
+                    <div id="dns-log" class="space-y-1 text-[#00f3ff]"></div>
+                </div>
+            </section>
+
+            <section id="hash-converter" class="p-8 border-4 border-[#00FF41] bg-[#050505] flex flex-col relative shadow-[8px_8px_0px_#000] outline-none">
+                <div class='flex items-center gap-4 mb-6'>
+                    <div class='relative w-12 h-12 shrink-0 flex items-center justify-center overflow-hidden border-2 border-[#00FF41]/20'>
+                        <!-- 8-bit Binary Stream -->
+                        <div class="font-mono text-[10px] text-[#00FF41] leading-none animate-binary-scroll select-none pointer-events-none">
+                            1010<br>0101<br>1100<br>0011<br>1010<br>0101<br>1100<br>0011<br>1010<br>0101<br>1100<br>0011
+                        </div>
+                    </div>
+                    <h2 class='text-[#FBFFFF] font-mono text-xl tracking-widest uppercase mt-1 arcade-header'>CIPHER</h2>
+                </div>
+                <div class="flex flex-col xl:flex-row gap-4 mb-6">
+                    <input type="text" id="hash-input" placeholder="PAYLOAD..." oninput="generateHashes()" class="flex-1 data-entry-input text-[#00FF41] p-4 font-mono focus:outline-none">
+                    <select id="algo-select" onchange="generateHashes()" class="data-entry-input bg-[#050505] text-[#00FF41] p-4 font-mono focus:outline-none cursor-pointer">
+                        <option value="SHA256">SHA-256 (Standard)</option>
+                        <option value="SHA512">SHA-512 (High Sec)</option>
+                        <option value="MD5">MD5 (Legacy/Fast)</option>
+                        <option value="SHA1">SHA-1 (Legacy/Git)</option>
+                        <option value="SHA3">SHA-3 (Next Gen)</option>
+                        <option value="SHA384">SHA-384</option>
+                        <option value="SHA224">SHA-224</option>
+                        <option value="RIPEMD160">RIPEMD-160</option>
+                        <option value="Base64">Base64 (Encode)</option>
+                        <option value="Hex">Hex (Encode)</option>
+                    </select>
+                </div>
+                <div class="flex-1 p-6 crt-log font-mono text-xs md:text-sm overflow-y-auto">
+                    <span id="hash-label" class="text-[#8f00ff] font-bold block mb-2">[SHA256_OUTPUT]</span>
+                    <span id="out-hash" class="text-[#00FF41] break-all">AWAITING_INPUT...</span>
+                </div>
+            </section>
+
+            <section id="vault-gen" class='p-8 border-4 border-[#ff003c] bg-[#050505] flex flex-col relative shadow-[8px_8px_0px_#000] outline-none'>
+                <div class='flex items-center gap-4 mb-6'>
+                    <div class='relative w-12 h-12 shrink-0 flex items-center justify-center overflow-hidden'>
+                        <!-- 8-bit Lock -->
+                        <svg viewBox="0 0 16 16" fill="#ff003c" class="w-8 h-8" style="shape-rendering: crispEdges;">
+                            <path class="animate-vault-lock" d="M4 4h1v2H4zM5 3h1v1H5zM6 2h4v1H6zM10 3h1v1h-1zM11 4h1v2h-1z" />
+                            <rect x="3" y="6" width="10" height="8" />
+                            <rect x="7" y="9" width="2" height="3" fill="#050505" />
+                        </svg>
+                    </div>
+                    <h2 class='text-[#FBFFFF] font-mono text-xl tracking-widest uppercase mt-1 arcade-header'>PASSWORD_GEN</h2>
+                </div>
+                <div class='flex flex-col gap-6'>
+                    <div class='flex flex-col gap-2'>
+                        <div class='flex justify-between mono text-[10px] text-gray-500'><span>LENGTH</span><span id='length-val' class='text-[#ff003c] font-bold'>32</span></div>
+                        <input type='range' id='pass-length' min='8' max='128' value='32' oninput='document.getElementById("length-val").innerText = this.value; generatePass();' class='w-full accent-[#ff003c] cursor-pointer'>
+                    </div>
+                    <div class='flex gap-8'>
+                        <label class='flex items-center gap-2 cursor-pointer group'><input type='checkbox' id='use-numbers' checked onchange='generatePass()' class='w-4 h-4 rounded-none bg-black border-2 border-[#ff003c] text-[#ff003c] focus:ring-0'><span class='mono text-[10px] text-gray-500 group-hover:text-[#ff003c] transition-colors uppercase'>Numbers</span></label>
+                        <label class='flex items-center gap-2 cursor-pointer group'><input type='checkbox' id='use-symbols' checked onchange='generatePass()' class='w-4 h-4 rounded-none bg-black border-2 border-[#ff003c] text-[#ff003c] focus:ring-0'><span class='mono text-[10px] text-gray-500 group-hover:text-[#ff003c] transition-colors uppercase'>Symbols</span></label>
+                    </div>
+                    <div class='relative'>
+                        <div id='pass-display' class='crt-log p-4 font-mono text-sm text-[#00FF41] break-all min-h-[56px] flex items-center shadow-[inset_0_0_10px_rgba(255,0,60,0.05)]'>GENERATING...</div>
+                        <button onclick='generatePass()' class='absolute right-2 top-1/2 -translate-y-1/2 p-2 hover:text-[#ff003c] transition-colors text-gray-600'><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg></button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="dork-gen" class="p-8 border-4 border-[#ff00ff] bg-[#050505] flex flex-col relative shadow-[8px_8px_0px_#000] outline-none">
+                <div class='flex items-center gap-4 mb-6'>
+                    <div class='relative w-12 h-12 shrink-0 flex items-center justify-center overflow-hidden'>
+                        <!-- 8-bit Spider Web -->
+                        <svg viewBox="0 0 16 16" fill="none" stroke="#ff00ff" stroke-width="1" class="w-10 h-10 animate-web-pulse" style="shape-rendering: crispEdges;">
+                            <path d="M0 0l16 16M16 0L0 16M8 0v16M0 8h16" />
+                            <path d="M5 8l3-3 3 3-3 3-3-3z M3 8l5-5 5 5-5 5-5-5z" />
+                        </svg>
+                    </div>
+                    <h2 class='text-[#FBFFFF] font-mono text-xl tracking-widest uppercase mt-1 arcade-header'>DORK_GEN</h2>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-3 mb-4">
+                    <input type="text" id="dork-site" placeholder="site:" oninput="buildDork()" class="data-entry-input text-[#ff00ff] p-3 font-mono focus:outline-none text-xs">
+                    <input type="text" id="dork-ext" placeholder="filetype:" oninput="buildDork()" class="data-entry-input text-[#ff00ff] p-3 font-mono focus:outline-none text-xs">
+                    <input type="text" id="dork-inurl" placeholder="inurl:" oninput="buildDork()" class="data-entry-input text-[#ff00ff] p-3 font-mono focus:outline-none text-xs">
+                    <input type="text" id="dork-intitle" placeholder="intitle:" oninput="buildDork()" class="data-entry-input text-[#ff00ff] p-3 font-mono focus:outline-none text-xs">
+                    <input type="text" id="dork-exact" placeholder='""' oninput="buildDork()" class="data-entry-input text-[#ff00ff] p-3 font-mono focus:outline-none text-xs col-span-2">
+                </div>
+
+                <div class="flex-1 p-4 crt-log font-mono text-[11px] break-all min-h-[60px] flex items-center text-[#ff00ff]" id="dork-output">
+                    AWAITING_PARAMETERS...
+                </div>
+                
+                <div class="flex gap-2 mt-4">
+                    <button onclick="copyDork()" class="arcade-btn flex-1 py-3 bg-transparent border-2 border-[#ff00ff] text-[#ff00ff] text-[10px] mono font-bold uppercase tracking-widest">COPY</button>
+                    <button onclick="executeDork()" class="arcade-btn flex-1 py-3 bg-[#ff00ff] text-black text-[10px] mono font-black uppercase tracking-widest">SEARCH</button>
+                </div>
+            </section>
+
+<script>
+function buildDork() {
+    const site = document.getElementById("dork-site").value.trim();
+    const ext = document.getElementById("dork-ext").value.trim();
+    const inurl = document.getElementById("dork-inurl").value.trim();
+    const intitle = document.getElementById("dork-intitle").value.trim();
+    const exact = document.getElementById("dork-exact").value.trim();
+
+    let dork = "";
+    if(site) dork += `site:${site} `;
+    if(ext) dork += `filetype:${ext} `;
+    if(inurl) dork += `inurl:"${inurl}" `;
+    if(intitle) dork += `intitle:"${intitle}" `;
+    if(exact) dork += `"${exact}" `;
+
+    const out = document.getElementById("dork-output");
+    out.innerText = dork.trim() || "AWAITING_PARAMETERS...";
+}
+
+function copyDork() {
+    const out = document.getElementById("dork-output").innerText;
+    if(out && out !== "AWAITING_PARAMETERS...") {
+        navigator.clipboard.writeText(out);
+        const btn = event.target;
+        const originalText = btn.innerText;
+        btn.innerText = "COPIED";
+        setTimeout(() => btn.innerText = originalText, 1500);
+    }
+}
+
+function executeDork() {
+    const out = document.getElementById("dork-output").innerText;
+    if(out && out !== "AWAITING_PARAMETERS...") {
+        window.open(`https://www.google.com/search?q=${encodeURIComponent(out)}`, '_blank');
+    }
+}
+</script>
+
+        </div>
+    </main>
+
+    <script>
+    const PORT = "5001";
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // BOOT SCREEN FADE-OUT Logic
+        const boot = document.getElementById("boot-screen");
+        if(boot) {
+            setTimeout(() => {
+                boot.style.opacity = '0';
+                setTimeout(() => boot.style.display = 'none', 1000);
+            }, 1000);
+        }
+        
+        // Default Pass
+        if(document.getElementById("pass-length")) generatePass();
+    });
+
+    async function executeHoleheScan() {
+        const email = document.getElementById("target-email").value;
+        const log = document.getElementById("results-log");
+        const output = document.getElementById("scan-output");
+        if(!email) return;
+        output.classList.remove("hidden");
+        log.innerHTML = "<div class='text-[#00FF41] animate-pulse'>> [SYSTEM] INITIATING_MULTI-VECTOR_OSINT_SCAN...</div>";
+        try {
+            const res = await fetch(`http://localhost:${PORT}/scan`, { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({email}) });
+            const data = await res.json();
+            log.innerHTML = `<div class='text-[#8f00ff] font-bold mt-4'>[FOOTPRINT_INTEL]</div>`;
+            if(data.holehe?.length > 0) {
+                data.holehe.forEach(h => { log.innerHTML += `<div class='flex justify-between border-b border-white/5 py-1'><span class='text-[#00FF41]'>> ${h}</span><span class='text-[#8f00ff] font-bold'>[VERIFIED]</span></div>`; });
+            } else { log.innerHTML += "<div class='text-gray-600 italic'>> NO_DATA_DETECTED</div>"; }
+        } catch(e) { log.innerHTML = "<div class='text-[#ff003c]'>[!] UPLINK ERROR</div>"; }
+    }
+
+    async function executeSpecterScan() {
+        const username = document.getElementById("specter-target").value;
+        const log = document.getElementById("specter-results");
+        const output = document.getElementById("specter-output");
+        if(!username) return;
+        output.classList.remove("hidden");
+        log.innerHTML = "<div class=\"text-[#ffb000] animate-pulse\">> [SYSTEM] INITIATING_SPECTER_USERNAME_RECON...</div>";
+        try {
+            const response = await fetch(`http://localhost:${PORT}/alias`, { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({username}) });
+            const data = await response.json();
+            log.innerHTML = `<div class='text-gray-500 mb-2'>> SCANNED: ${data.scanned} | FOUND: ${data.found.length}</div>`;
+            if(data.found.length > 0){
+                data.found.forEach(url => {
+                    log.innerHTML += `<div class="py-1"><a href="${url}" target="_blank" class="text-[#00FF41] hover:text-[#ffb000] transition-colors">> ${url}</a></div>`;
+                });
+            } else { log.innerHTML += "<div class='text-gray-600 italic'>> NO_PROFILES_FOUND</div>"; }
+        } catch(e) { log.innerHTML = "<div class=\"text-[#ff003c]\">> [ERROR] UPLINK_FAILED.</div>"; }
+    }
+
+    async function executeDnsLookup() {
+        const domain = document.getElementById("target-domain").value;
+        const log = document.getElementById("dns-log");
+        const output = document.getElementById("dns-output");
+        if(!domain) return;
+        output.classList.remove("hidden");
+        log.innerHTML = "<div class='text-[#00f3ff] animate-pulse'>> [SYSTEM] INITIATING_DNS_RECONNAISSANCE...</div>";
+        try {
+            const response = await fetch(`http://localhost:${PORT}/dns`, { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({domain}) });
+            const data = await response.json();
+            log.innerHTML = "";
+            if(data.error){ log.innerHTML = `<div class="text-[#ff003c]">> [ERROR] ${data.error}</div>`; return; }
+            Object.keys(data).forEach(type => {
+                if(data[type].length > 0){
+                    data[type].forEach(val => {
+                        log.innerHTML += `<div class="flex justify-between border-b border-white/5 py-1"><span class="text-[#00f3ff]">> ${val}</span><span class="text-[#00f3ff] font-bold">[${type}]</span></div>`;
+                    });
+                } else { log.innerHTML += `<div class="text-gray-600 italic">> NO_${type}_RECORDS_FOUND</div>`; }
+            });
+        } catch(e) { log.innerHTML = "<div class='text-[#ff003c]'>[!] UPLINK ERROR</div>"; }
+    }
+
+    function generateHashes(){
+        const t=document.getElementById("hash-input").value;
+        const algo=document.getElementById("algo-select").value;
+        const out=document.getElementById("out-hash");
+        document.getElementById("hash-label").innerText=`[${algo}_OUTPUT]`;
+        if(!t){out.innerText="AWAITING_INPUT...";return;}
+        if(algo==="Base64") out.innerText=btoa(t);
+        else if(algo==="Hex") out.innerText=t.split("").map(c=>c.charCodeAt(0).toString(16).padStart(2,"0")).join("");
+        else out.innerText=CryptoJS[algo](t).toString();
+    }
+
+    function generatePass(){
+        const l=parseInt(document.getElementById("pass-length").value);
+        const n=document.getElementById("use-numbers").checked;
+        const s=document.getElementById("use-symbols").checked;
+        let c="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        if(n)c+="0123456789";
+        if(s)c+="!@#$%^&*()_+~`|}{[]:;?><,./-=";
+        let r="";
+        const a=new Uint32Array(l);
+        window.crypto.getRandomValues(a);
+        for(let i=0;i<l;i++){r+=c.charAt(a[i]%c.length);}
+        document.getElementById("pass-display").innerText=r;
+    }
+    </script>
+
+    <script src="bg.js"></script>
+    <script src="deadswitch.js"></script>
+</body>
+</html>

@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="22fqr-checkin" content="2026-03-27" />
+    <title>
+      22fqr // Darkweb_Node
+    </title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <meta name="access-token" content="z$KS9#phQ2!dmR5w*vTb8&amp;xrB1n" />
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;500;700&amp;family=Orbitron:wght@400;700;900&amp;family=Rajdhani:wght@500;700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+      <style>
+     @keyframes flicker { 0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; } 20%, 24%, 55% { opacity: 0.3; } } .animate-flicker { animation: flicker 3s infinite; }
+    </style>
+</head>
+  <body class="antialiased text-gray-300 overflow-x-hidden selection:bg-[#ff003c] selection:text-white bg-[#050505]">
+    <div id="boot-screen" class="fixed inset-0 bg-black z-[100] p-10 overflow-hidden flex flex-col justify-end transition-opacity duration-1000">
+      <div id="boot-text" class="max-w-2xl">
+      </div>
+      <div class="animate-pulse text-green-500 font-mono text-sm mt-2">
+        _
+      </div>
+    </div>
+    <div class="vignette">
+    </div>
+    <div class="crt-overlay">
+    </div>
+    <div class="noise-layer">
+    </div>
+    <div class="cyber-grid">
+    </div>
+    <canvas id="cyber-canvas" class="fixed inset-0 z-0 pointer-events-none opacity-40">
+    </canvas>
+    <nav class="fixed w-full z-50 px-6 py-4 bg-[#030303]/80 backdrop-blur-md border-b border-[#00f3ff]/10">
+      <div class="max-w-[1800px] mx-auto flex justify-between items-center">
+        <div class="flex items-center gap-2 group cursor-pointer">
+          <div class="w-2 h-2 bg-[#ff003c] animate-pulse rounded-sm shadow-[0_0_10px_#ff003c]">
+          </div>
+          <div class="cyber-font text-[#e0e0e0] font-bold text-lg tracking-[0.2em] group-hover:text-[#00f3ff] transition duration-300 drop-shadow-[0_0_5px_rgba(0,243,255,0.5)]">
+            22fqr
+          </div>
+        </div>
+        <div class="hidden md:flex space-x-10 mono text-[10px] uppercase tracking-[0.2em]">
+          <a href="#profile" class="nav-link hover:text-[#00f3ff] transition">          Identity
+</a>
+          <a href="#toolbox" class="nav-link hover:text-[#ff003c] transition">          Arsenal
+</a>
+          <a href="#console" class="nav-link hover:text-[#00FF41] transition">          Terminal
+</a>
+          <a href="#tools-grid" class="nav-link hover:text-[#8f00ff] transition">          Tools
+</a>
+        </div>
+      </div>
+    </nav>
+    <main class="container-wide pt-32 px-6">
+      <section id="profile" class="grid lg:grid-cols-12 gap-12 items-center mb-40 relative z-10">
+        <style>
+          /* RESET & CORE GHOST OS STYLES */
+          #profile * {
+            transition: none !important;
+          }
+
+          .retro-border {
+            border: 4px solid #fff;
+            box-shadow: 8px 8px 0px #8f00ff;
+          }
+
+          /* RADAR SWEEP */
+          @keyframes radar {
+            0% { top: -10%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 110%; opacity: 0; }
+          }
+          .radar-line {
+            position: absolute;
+            width: 100%;
+            height: 6px;
+            background: #00ff41;
+            box-shadow: 0 0 15px #00ff41;
+            z-index: 30;
+            pointer-events: none;
+            animation: radar 3s linear infinite;
+          }
+
+          /* PIXEL FIRE */
+          @keyframes fire-flicker {
+            0%, 100% { transform: scaleY(1) translateY(0); }
+            50% { transform: scaleY(1.2) translateY(-2px); }
+          }
+          .pixel-fire {
+            animation: fire-flicker 0.2s steps(2) infinite;
+          }
+        </style>
+
+        <div class="lg:col-span-7 pt-10 order-2 lg:order-1">
+          <h1 class="text-6xl md:text-8xl font-black text-white leading-[0.85] mb-8 tracking-tighter cyber-font">
+            I AM
+            <br />
+            <span class="text-[#8f00ff]" data-text="22fqr.">22fqr.</span>
+          </h1>
+          <p class="text-lg md:text-xl text-gray-400 max-w-2xl leading-relaxed mb-10 pl-6">
+            Just a beginner exploring the world of
+            <span class="text-[#8f00ff] font-bold">            offensive security
+</span>
+           . Learning to code, write scripts, and understand how systems are put together.<br>
+    <span class="text-[#8f00ff] font-bold">TryHackMe and HackTheBox</span> have been my main grind lately, just trying to level up and learn how to actually get root.
+          </p>
+          <div class="flex gap-4 mono text-[10px] mt-10">
+            <div class="text-gray-500 border-2 border-gray-800 p-2">
+              TOR_CONNECTION:
+              <span class="text-[#00FF41]">ESTABLISHED</span>
+            </div>
+            <div class="text-gray-500 border-2 border-gray-800 p-2">
+              IP_ADDRESS:
+              <span class="text-[#ff003c]">SPOOFED</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 flex flex-col items-center justify-center relative mt-10 lg:mt-0 order-1 lg:order-2">
+          <!-- Avatar Container -->
+          <div class="relative w-72 h-72 border-[4px] border-white bg-black z-20 overflow-hidden rounded-full shadow-[8px_8px_0px_#8f00ff]">
+            <!-- Radar Sweep -->
+            <div class="radar-line"></div>
+            
+            <img src="assets/22fqr.jpg" alt="22fqr" class="w-full h-full object-cover grayscale contrast-150 rounded-full" />
+          </div>
+
+          <div class="mt-8 text-center mb-6">
+            <div class="cyber-font text-2xl text-white tracking-widest border-b-[4px] border-white px-4 mb-2">
+              22fqr
+            </div>
+            <div class="flex items-center justify-center gap-2">
+              <div class="mono text-[10px] text-[#ff003c] font-bold tracking-tighter">
+                SYSTEM_OVERLORD
+              </div>
+              <!-- Pixel Fire SVG -->
+              <svg class="w-6 h-6 pixel-fire" viewBox="0 0 8 8" fill="#ff003c">
+                <rect x="3" y="0" width="2" height="1" opacity="0.6" />
+                <rect x="2" y="1" width="4" height="1" />
+                <rect x="1" y="2" width="6" height="2" />
+                <rect x="0" y="4" width="8" height="3" />
+                <rect x="2" y="5" width="4" height="1" fill="#ffb000" />
+                <rect x="3" y="6" width="2" height="1" fill="#fff" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="toolbox" class="mb-40 relative z-10">
+        <style>
+          /* GHOST OS SKILLS STYLES */
+          #toolbox * {
+            border-radius: 0 !important;
+            transition: none !important;
+          }
+
+          .retro-card {
+            background: #050505;
+            border: 4px solid var(--card-color);
+            box-shadow: 8px 8px 0px var(--card-shadow);
+            position: relative;
+          }
+
+          .retro-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 10px 10px 0px var(--card-shadow);
+          }
+
+          /* 8-BIT GEAR */
+          @keyframes gear-rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+          }
+          .pixel-gear {
+            width: 16px;
+            height: 16px;
+            animation: gear-rotate 4s steps(8) infinite;
+          }
+
+          /* ANIMATED DATA STREAM (LOADING BAR) */
+          @keyframes data-stream {
+            0% { background-position: 0 0; }
+            100% { background-position: 40px 0; }
+          }
+          .data-bar {
+            height: 8px;
+            width: 100%;
+            background-image: linear-gradient(90deg, 
+              var(--card-color) 0%, 
+              var(--card-color) 50%, 
+              transparent 50%, 
+              transparent 100%);
+            background-size: 20px 100%;
+            animation: data-stream 1s linear infinite;
+            border: 2px solid var(--card-color);
+            margin: 12px 0;
+          }
+
+          /* RETRO SELECTION ARROW */
+          .tool-arrow {
+            display: none;
+            color: var(--card-color);
+            font-weight: bold;
+          }
+          .group\/item:hover .tool-arrow {
+            display: inline-block;
+          }
+          @keyframes blink-fast {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+          }
+        </style>
+
+        <div class="flex items-center justify-center gap-4 mb-16">
+          <div class="h-[4px] bg-gray-800 w-12"></div>
+          <h2 class="mono text-white text-lg font-bold tracking-[0.5em] uppercase text-center cursor-default flex items-center">
+            SKILLS
+          </h2>
+          <div class="h-[4px] bg-gray-800 w-12"></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <!-- 01 // RECONNAISSANCE -->
+          <div class="retro-card p-6" style="--card-color: #00f3ff; --card-shadow: rgba(0, 243, 255, 0.3);">
+            <div class="flex justify-between items-center mb-4">
+              <h4 class="text-[#00f3ff] mono text-sm font-bold uppercase">
+                01 // RECONNAISSANCE
+              </h4>
+              <div class="pixel-gear">
+                <svg viewBox="0 0 8 8" fill="#00f3ff">
+                  <path d="M3 0h2v1H3zM0 3h1v2H0zM7 3h1v2H7zM3 7h2v1H3zM1 1h2v1H1zM5 1h2v1H5zM1 5h2v1H1zM5 5h2v1H5z" />
+                  <rect x="3" y="3" width="2" height="2" />
+                </svg>
+              </div>
+            </div>
+            <div class="data-bar"></div>
+            <ul class="text-xs text-gray-500 mono space-y-3">
+              <li class="group/item flex items-center gap-2 text-gray-400 cursor-crosshair">
+                <span class="tool-arrow">[►]</span>
+                Nmap
+                <span class="text-[#00f3ff]/40">// Discovery</span>
+              </li>
+              <li class="group/item flex items-center gap-2 text-gray-400 cursor-crosshair">
+                <span class="tool-arrow">[►]</span>
+                Burp Suite
+                <span class="text-[#00f3ff]/40">// Proxy</span>
+              </li>
+              <li class="group/item flex items-center gap-2 text-gray-400 cursor-crosshair">
+                <span class="tool-arrow">[►]</span>
+                FFUF
+                <span class="text-[#00f3ff]/40">// Fuzzing</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- 02 // EXPLOITATION -->
+          <div class="retro-card p-6" style="--card-color: #ff003c; --card-shadow: rgba(255, 0, 60, 0.3);">
+            <div class="flex justify-between items-center mb-4">
+              <h4 class="text-[#ff003c] mono text-sm font-bold uppercase">
+                02 // EXPLOITATION
+              </h4>
+              <div class="pixel-gear">
+                <svg viewBox="0 0 8 8" fill="#ff003c">
+                  <path d="M3 0h2v1H3zM0 3h1v2H0zM7 3h1v2H7zM3 7h2v1H3zM1 1h2v1H1zM5 1h2v1H5zM1 5h2v1H1zM5 5h2v1H5z" />
+                  <rect x="3" y="3" width="2" height="2" />
+                </svg>
+              </div>
+            </div>
+            <div class="data-bar"></div>
+            <ul class="text-xs text-gray-500 mono space-y-3">
+              <li class="group/item flex items-center gap-2 text-gray-400 cursor-crosshair">
+                <span class="tool-arrow">[►]</span>
+                Metasploit
+                <span class="text-[#ff003c]/40">// C2_Framework</span>
+              </li>
+              <li class="group/item flex items-center gap-2 text-gray-400 cursor-crosshair">
+                <span class="tool-arrow">[►]</span>
+                SQLmap
+                <span class="text-[#ff003c]/40">// Injection</span>
+              </li>
+              <li class="group/item flex items-center gap-2 text-gray-400 cursor-crosshair">
+                <span class="tool-arrow">[►]</span>
+                Hydra
+                <span class="text-[#ff003c]/40">// Brute_Force</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- 03 // ACTIVE DIRECTORY -->
+          <div class="retro-card p-6" style="--card-color: #00FF41; --card-shadow: rgba(0, 255, 65, 0.3);">
+            <div class="flex justify-between items-center mb-4">
+              <h4 class="text-[#00FF41] mono text-sm font-bold uppercase">
+                03 // ACTIVE DIRECTORY
+              </h4>
+              <div class="pixel-gear">
+                <svg viewBox="0 0 8 8" fill="#00FF41">
+                  <path d="M3 0h2v1H3zM0 3h1v2H0zM7 3h1v2H7zM3 7h2v1H3zM1 1h2v1H1zM5 1h2v1H5zM1 5h2v1H1zM5 5h2v1H5z" />
+                  <rect x="3" y="3" width="2" height="2" />
+                </svg>
+              </div>
+            </div>
+            <div class="data-bar"></div>
+            <ul class="text-xs text-gray-500 mono space-y-3">
+              <li class="group/item flex items-center gap-2 text-gray-400 cursor-crosshair">
+                <span class="tool-arrow">[►]</span>
+                BloodHound
+                <span class="text-[#00FF41]/40">// Graph_Theory</span>
+              </li>
+              <li class="group/item flex items-center gap-2 text-gray-400 cursor-crosshair">
+                <span class="tool-arrow">[►]</span>
+                Mimikatz
+                <span class="text-[#00FF41]/40">// Cred_Dump</span>
+              </li>
+              <li class="group/item flex items-center gap-2 text-gray-400 cursor-crosshair">
+                <span class="tool-arrow">[►]</span>
+                Impacket
+                <span class="text-[#00FF41]/40">// RPC_Abuse</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- 04 // C2 INFRASTRUCTURE -->
+          <div class="retro-card p-6" style="--card-color: #a855f7; --card-shadow: rgba(168, 85, 247, 0.3);">
+            <div class="flex justify-between items-center mb-4">
+              <h4 class="text-[#a855f7] mono text-sm font-bold uppercase">
+                04 // C2 INFRASTRUCTURE
+              </h4>
+              <div class="pixel-gear">
+                <svg viewBox="0 0 8 8" fill="#a855f7">
+                  <path d="M3 0h2v1H3zM0 3h1v2H0zM7 3h1v2H7zM3 7h2v1H3zM1 1h2v1H1zM5 1h2v1H5zM1 5h2v1H1zM5 5h2v1H5z" />
+                  <rect x="3" y="3" width="2" height="2" />
+                </svg>
+              </div>
+            </div>
+            <div class="data-bar"></div>
+            <ul class="text-xs text-gray-500 mono space-y-3">
+              <li class="group/item flex items-center gap-2 text-gray-400 cursor-crosshair">
+                <span class="tool-arrow">[►]</span>
+                Cobalt Strike
+                <span class="text-[#a855f7]/40">// Red_Ops</span>
+              </li>
+              <li class="group/item flex items-center gap-2 text-gray-400 cursor-crosshair">
+                <span class="tool-arrow">[►]</span>
+                Sliver
+                <span class="text-[#a855f7]/40">// Open_Source</span>
+              </li>
+              <li class="group/item flex items-center gap-2 text-gray-400 cursor-crosshair">
+                <span class="tool-arrow">[►]</span>
+                Havoc
+                <span class="text-[#a855f7]/40">// EDR_Evasion</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- 05 // PRIVILEGE ESC -->
+          <div class="retro-card p-6" style="--card-color: #fbbf24; --card-shadow: rgba(251, 191, 36, 0.3);">
+            <div class="flex justify-between items-center mb-4">
+              <h4 class="text-[#fbbf24] mono text-sm font-bold uppercase">
+                05 // PRIVILEGE ESC
+              </h4>
+              <div class="pixel-gear">
+                <svg viewBox="0 0 8 8" fill="#fbbf24">
+                  <path d="M3 0h2v1H3zM0 3h1v2H0zM7 3h1v2H7zM3 7h2v1H3zM1 1h2v1H1zM5 1h2v1H5zM1 5h2v1H1zM5 5h2v1H5z" />
+                  <rect x="3" y="3" width="2" height="2" />
+                </svg>
+              </div>
+            </div>
+            <div class="data-bar"></div>
+            <ul class="text-xs text-gray-500 mono space-y-3">
+              <li class="group/item flex items-center gap-2 text-gray-400 cursor-crosshair">
+                <span class="tool-arrow">[►]</span>
+                LinPEAS
+                <span class="text-[#fbbf24]/40">// Linux_Enum</span>
+              </li>
+              <li class="group/item flex items-center gap-2 text-gray-400 cursor-crosshair">
+                <span class="tool-arrow">[►]</span>
+                WinPEAS
+                <span class="text-[#fbbf24]/40">// Win_Enum</span>
+              </li>
+              <li class="group/item flex items-center gap-2 text-gray-400 cursor-crosshair">
+                <span class="tool-arrow">[►]</span>
+                GTFOBins
+                <span class="text-[#fbbf24]/40">// Binary_Abuse</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- 06 // VULN ANALYSIS -->
+          <div class="retro-card p-6" style="--card-color: #ffffff; --card-shadow: rgba(255, 255, 255, 0.3);">
+            <div class="flex justify-between items-center mb-4">
+              <h4 class="text-white mono text-sm font-bold uppercase">
+                06 // VULN ANALYSIS
+              </h4>
+              <div class="pixel-gear">
+                <svg viewBox="0 0 8 8" fill="#ffffff">
+                  <path d="M3 0h2v1H3zM0 3h1v2H0zM7 3h1v2H7zM3 7h2v1H3zM1 1h2v1H1zM5 1h2v1H5zM1 5h2v1H1zM5 5h2v1H5z" />
+                  <rect x="3" y="3" width="2" height="2" />
+                </svg>
+              </div>
+            </div>
+            <div class="data-bar"></div>
+            <ul class="text-xs text-gray-500 mono space-y-3">
+              <li class="group/item flex items-center gap-2 text-gray-400 cursor-crosshair">
+                <span class="tool-arrow">[►]</span>
+                Nessus
+                <span class="text-white/40">// Assessment</span>
+              </li>
+              <li class="group/item flex items-center gap-2 text-gray-400 cursor-crosshair">
+                <span class="tool-arrow">[►]</span>
+                Nuclei
+                <span class="text-white/40">// Templates</span>
+              </li>
+              <li class="group/item flex items-center gap-2 text-gray-400 cursor-crosshair">
+                <span class="tool-arrow">[►]</span>
+                Nikto
+                <span class="text-white/40">// Web_Server</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <div class="flex items-center justify-center gap-4 mb-16 mt-20 relative z-20">
+        <div class="h-[4px] bg-gray-800 w-12"></div>
+        <h2 class="text-white text-lg font-bold tracking-[0.5em] uppercase text-center cursor-default flex items-center font-mono">
+          CONSOLE
+        </h2>
+        <div class="h-[4px] bg-gray-800 w-12"></div>
+      </div>
+
+      <section id="console" class="mb-32 relative z-10">
+        <style>
+          /* SATURN STATION TERMINAL STYLES */
+          #console * {
+            border-radius: 0 !important;
+            transition: none !important;
+          }
+
+          .saturn-frame {
+            background: #050505;
+            border: 4px solid #FBFFFF;
+            box-shadow: 10px 10px 0px #8f00ff;
+            position: relative;
+            overflow: hidden;
+          }
+
+          /* 8-BIT SATURN LOGO */
+          @keyframes saturn-rings {
+            0% { transform: scaleX(1) rotate(0deg); opacity: 1; }
+            50% { transform: scaleX(1.1) rotate(2deg); opacity: 0.8; }
+            100% { transform: scaleX(1) rotate(0deg); opacity: 1; }
+          }
+          @keyframes saturn-bands {
+            from { background-position: 0 0; }
+            to { background-position: 40px 0; }
+          }
+          .saturn-logo {
+            width: 48px;
+            height: 48px;
+            position: relative;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          .saturn-planet {
+            width: 24px;
+            height: 24px;
+            background: #fbbf24;
+            border: 2px solid #FBFFFF;
+            position: relative;
+            overflow: hidden;
+            z-index: 2;
+          }
+          .saturn-bands {
+            position: absolute;
+            width: 200%;
+            height: 100%;
+            background: repeating-linear-gradient(0deg, 
+              rgba(0,0,0,0.2) 0px, rgba(0,0,0,0.2) 4px, 
+              transparent 4px, transparent 8px);
+            animation: saturn-bands 4s steps(5) infinite;
+          }
+          .saturn-rings {
+            position: absolute;
+            width: 44px;
+            height: 8px;
+            border: 3px solid #00f3ff;
+            top: 20px;
+            z-index: 1;
+            animation: saturn-rings 2s steps(4) infinite;
+          }
+
+          /* STAR RAIN */
+          @keyframes star-rain {
+            from { transform: translateY(-500px); }
+            to { transform: translateY(500px); }
+          }
+          .star-rain-container {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+          }
+          .star-drop {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #fff;
+            opacity: 0.9;
+            box-shadow: 0 0 4px #fff;
+            animation: star-rain linear infinite;
+          }
+
+          /* METEOR STREAK */
+          @keyframes meteor-arc {
+            0% { transform: translate(400px, -100px); opacity: 0; }
+            10% { opacity: 1; }
+            30% { transform: translate(-400px, 400px); opacity: 0; }
+            100% { transform: translate(-400px, 400px); opacity: 0; }
+          }
+          .saturn-meteor {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ffb000;
+            box-shadow: 4px -4px 0px #ff003c;
+            animation: meteor-arc 10s steps(40) infinite;
+            z-index: 1;
+          }
+
+          /* GALACTIC TOP BAR GLITCH */
+          @keyframes rgb-header {
+            0% { text-shadow: 2px 0 #ff003c, -2px 0 #00f3ff; }
+            50% { text-shadow: -1px 0 #ff003c, 1px 0 #00f3ff; }
+            100% { text-shadow: 2px 0 #ff003c, -2px 0 #00f3ff; }
+          }
+          .glitch-header {
+            animation: rgb-header 0.5s steps(2) infinite;
+          }
+
+          /* COCKPIT UI */
+          @keyframes cockpit-blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+          }
+          .saturn-cursor {
+            display: inline-block;
+            width: 10px;
+            height: 16px;
+            background: #00FF41;
+            vertical-align: middle;
+          }
+          .saturn-prompt {
+            color: #00FF41;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+            font-weight: bold;
+          }
+        </style>
+
+        <div class="max-w-4xl mx-auto">
+          <div class="saturn-frame">
+            <!-- Header Bar -->
+            <div class="bg-[#0a0a0a] px-4 py-2 flex justify-between items-center border-b-[4px] border-[#FBFFFF]/30 relative z-20">
+              <div class="flex gap-4 items-center">
+                <div class="flex gap-2">
+                  <div class="w-2.5 h-2.5 bg-[#ff003c] shadow-[0_0_8px_#ff003c]"></div>
+                  <div class="w-2.5 h-2.5 bg-[#00f3ff] shadow-[0_0_8px_#00f3ff]"></div>
+                  <div class="w-2.5 h-2.5 bg-[#8f00ff] shadow-[0_0_8px_#8f00ff]"></div>
+                </div>
+                <div class="font-mono text-[10px] text-[#FBFFFF] tracking-widest font-bold">
+                  SATURN_STATION // NODE_01
+                </div>
+              </div>
+            </div>
+
+            <!-- Terminal Window -->
+            <div id="terminal-window" class="px-6 pb-6 pt-0 h-[450px] overflow-y-auto font-mono text-sm space-y-1 font-light text-gray-400 scrollbar-hide relative">
+              <!-- Star Rain Background -->
+              <div class="star-rain-container">
+                <div class="star-drop" style="left: 10%; animation-duration: 3s; animation-delay: 0s;"></div>
+                <div class="star-drop" style="left: 30%; animation-duration: 5s; animation-delay: 1s;"></div>
+                <div class="star-drop" style="left: 50%; animation-duration: 4s; animation-delay: 2s;"></div>
+                <div class="star-drop" style="left: 70%; animation-duration: 6s; animation-delay: 0.5s;"></div>
+                <div class="star-drop" style="left: 90%; animation-duration: 3.5s; animation-delay: 1.5s;"></div>
+                <div class="saturn-meteor" style="top: 20%; right: 10%;"></div>
+              </div>
+
+              <div id="terminal-sticky-header" class="sticky top-0 z-50 bg-[#020202]/90 mb-6 pb-4 pt-6 border-b-[4px] border-dashed border-[#FBFFFF]/40 select-none">
+                <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6 mb-4">
+                  <!-- Saturn Logo -->
+                  <div class="saturn-logo">
+                    <div class="saturn-planet">
+                      <div class="saturn-bands"></div>
+                    </div>
+                    <div class="saturn-rings"></div>
+                  </div>
+                  <div class="flex-grow text-center sm:text-left">
+                    <h2 class="text-[#FBFFFF] text-2xl md:text-3xl font-black tracking-[0.2em] font-[&#39;Rajdhani&#39;] uppercase m-0 leading-none">
+                      GHOST_OS
+                    </h2>
+                    <div class="text-[#FBFFFF] text-xs font-bold tracking-widest mt-1 uppercase">
+                      Saturn_Kernel_v9.0.5
+                    </div>
+                    <div class="text-gray-500 text-[10px] mt-3 flex flex-wrap justify-center sm:justify-start gap-3">
+                      <span class="text-[#ff003c] font-bold animate-pulse">SYSTEM: ONLINE</span>
+                      <span class="hidden sm:inline">|</span>
+                      <span>STATION: 0xSAT</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-col md:flex-row md:justify-between gap-2 border-l-[4px] border-[#8f00ff] pl-3 bg-[#0a0a0a]/80 py-2 mt-2">
+                  <div class="text-xs">
+                    <div class="mb-1">
+                      <span class="text-[#FBFFFF]">AUTH:</span>
+                      <span class="text-yellow-500 font-bold" id="auth-state-display">[ VISITOR ]</span>
+                    </div>
+                    <div>
+                      <span class="text-[#FBFFFF]">ENCRYPT:</span>
+                      <span class="text-white">SAT-SEC-GCM</span>
+                    </div>
+                  </div>
+                  <div class="text-[10px] text-[#FBFFFF] self-end font-mono text-right">
+                    <div>MEM_SYNC: OK</div>
+                    <div>CPU_TEMP: <span id="cpu-load-display">32C</span></div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Content Wrapper to ensure text is above stars -->
+              <div id="terminal-output" class="relative z-10">
+              </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="p-4 bg-[#050505] border-t-[4px] border-[#FBFFFF]/30 flex items-center relative z-30">
+              <span id="terminal-prompt-label" class="saturn-prompt mr-3 font-bold text-xs select-none">guest@22fqr:~$</span>
+              <div class="flex-1 flex items-center">
+                <input type="text" id="terminal-input" class="bg-transparent outline-none border-none text-[#00FF41] font-mono placeholder-gray-800 text-sm w-full" placeholder="Initiate protocols..." autocomplete="off" spellcheck="false" />
+                <span class="saturn-cursor"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="flex items-center justify-center gap-4 mb-16 mt-20 relative z-20">
+        <div class="h-[4px] bg-gray-800 w-12"></div>
+        <h2 class="text-white text-lg font-bold tracking-[0.5em] uppercase text-center cursor-default flex items-center font-mono">
+          TOOLS
+        </h2>
+        <div class="h-[4px] bg-gray-800 w-12"></div>
+      </div>
+      <style>
+        /* TOOLS & LAUNCH SECTION STYLES */
+        #tools-grid *, .launch-area * {
+          border-radius: 0 !important;
+          transition: none !important;
+        }
+
+        .tool-card {
+          background: #050505;
+          border: 4px solid var(--tool-color);
+          box-shadow: 8px 8px 0px rgba(0,0,0,0.8);
+          position: relative;
+        }
+
+        .tool-card:hover {
+          box-shadow: 12px 12px 0px var(--tool-color);
+          transform: translate(-4px, -4px);
+        }
+
+          /* --- GHOST_GLITCH_PROTOCOL --- */
+
+  @keyframes ghostGlitch {
+
+    0%, 100% { 
+      transform: translate(0); 
+      clip-path: inset(0 0 0 0); 
+      filter: none;
+    }
+
+    20% { 
+      transform: translate(-2px, 1px); 
+      clip-path: inset(10% 0 45% 0); 
+      filter: drop-shadow(2px 0 #ff003c) drop-shadow(-2px 0 #00f3ff);
+    }
+
+    40% { 
+      transform: translate(2px, -1px); 
+      clip-path: inset(50% 0 10% 0); 
+      filter: drop-shadow(-2px 0 #ff003c) drop-shadow(2px 0 #00f3ff);
+    }
+
+    60% { 
+      transform: translate(-1px, 2px); 
+      clip-path: inset(25% 0 25% 0);
+      filter: none;
+    }
+
+    80% { 
+      transform: translate(1px, -2px); 
+      clip-path: inset(0 0 65% 0);
+      filter: drop-shadow(1px 0 #ff003c);
+    }
+
+  }
+
+
+  /* --- APPLY TO SPRITE --- */
+
+  .specter-ghost {
+    display: inline-flex;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    image-rendering: pixelated;
+    overflow: visible;
+  }
+
+        /* 2. DNS SATELLITE */
+        @keyframes wave-ping {
+          0% { transform: scale(1); opacity: 1; }
+          100% { transform: scale(1.5); opacity: 0; }
+        }
+        .satellite-wave {
+          stroke: #00f3ff;
+          animation: wave-ping 1s steps(4) infinite;
+        }
+
+        /* 3. CIPHER BINARY STREAM */
+        @keyframes binary-scroll {
+          from { transform: translateY(0); }
+          to { transform: translateY(-50%); }
+        }
+        .binary-stream {
+          font-family: monospace;
+          font-size: 10px;
+          color: #00FF41;
+          height: 40px;
+          overflow: hidden;
+        }
+        .binary-content {
+          animation: binary-scroll 2s steps(10) infinite;
+        }
+
+        /* 4. VAULT KEY */
+        @keyframes key-rotate {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .pixel-key {
+          width: 24px;
+          height: 24px;
+          animation: key-rotate 4s steps(8) infinite;
+        }
+
+        /* LAUNCH BUTTON REFINED */
+        .arcade-launch-btn {
+          background: #000000;
+          border: 6px solid #8f00ff;
+          box-shadow: 0px 10px 0px #000000 , 10px 15px 0px rgba(0,0,0,0.5);
+          color: #fff;
+          text-shadow: 2px 2px #000;
+          position: relative;
+          text-decoration: none;
+          transition: background-color 0.2s ease !important;
+        }
+
+        .arcade-launch-btn:hover {
+          background: #ff4d4d;
+        }
+
+        .arcade-launch-btn:active {
+          transform: translateY(4px);
+          box-shadow: 0px 6px 0px #9e0808, 10px 11px 0px rgba(0,0,0,0.5);
+        }
+
+        .hazard-icon {
+          width: 32px;
+          height: 32px;
+        }
+
+        @keyframes siren-light-emission {
+          0%, 100% {
+            filter: drop-shadow(0 0 15px #ff0d0d);
+          }
+          50% {
+            filter: none;
+          }
+        }
+
+        .siren-icon-wrapper {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          animation: siren-light-emission 0.5s steps(1) infinite;
+        }
+      </style>
+        <div id="tools-grid" class="max-w-6xl mx-auto my-20 grid grid-cols-1 lg:grid-cols-2 gap-8 relative z-10">
+        <!-- SPECTER -->
+        <section id="specter-scanner" class="tool-card p-8" style="--tool-color: #ffff00;">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="specter-ghost w-[40px] h-[40px]">
+              <svg viewBox="0 0 8 8" fill="#ffff00" class="w-full h-full">
+                <path d="M2 0h4v1H2zM1 1h6v1H1zM0 2h8v5H0zM1 7h1v1H1zM3 7h2v1H3zM6 7h1v1H6z" />
+                <rect x="2" y="3" width="1" height="1" fill="#000" />
+                <rect x="5" y="3" width="1" height="1" fill="#000" />
+              </svg>
+            </div>
+            <h2 class="text-[#FBFFFF] font-mono text-xl tracking-widest uppercase">SPECTER [USERNAME-OSINT]</h2>
+          </div>
+          <div class="flex flex-col md:flex-row gap-4">
+            <input type="text" id="specter-target" placeholder="TARGET_USERNAME..." class="flex-1 bg-black border-2 border-[#ffff00]/30 text-[#FBFFFF] p-4 font-mono outline-none">
+            <button onclick="executeSpecterScan()" class="bg-[#ffff00] text-black font-bold px-8 py-4 uppercase border-b-4 border-black">INITIATE</button>
+          </div>
+          <div id="specter-output" class="hidden mt-8 p-6 bg-black border-2 border-[#ffb000]/20 font-mono text-xs text-[#ffff00]">
+            <div id="specter-results" class="space-y-1"></div>
+          </div>
+        </section>
+
+        <!-- DNS_RECON -->
+        <section id="dns-recon" class="tool-card p-8" style="--tool-color: #00f3ff;">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="relative w-10 h-10">
+              <svg viewBox="0 0 16 16" fill="#00f3ff">
+                <rect x="6" y="6" width="4" height="4" />
+                <rect x="4" y="8" width="8" height="1" />
+                <rect x="7" y="4" width="2" height="8" />
+                <circle cx="8" cy="8" r="5" fill="none" stroke="#00f3ff" stroke-width="1" class="satellite-wave" />
+              </svg>
+            </div>
+            <h2 class="text-[#FBFFFF] font-mono text-xl tracking-widest uppercase mt-1">DNS_RECON</h2>
+          </div>
+          <div class="flex flex-col md:flex-row gap-4">
+            <input type="text" id="target-domain" placeholder="TARGET_DOMAIN..." class="flex-1 bg-black border-2 border-[#00f3ff]/30 text-[#FBFFFF] p-4 font-mono outline-none">
+            <button onclick="executeDnsLookup()" class="bg-[#00f3ff] text-black font-bold px-8 py-4 uppercase border-b-4 border-black">SCAN</button>
+          </div>
+          <div id="dns-output" class="hidden mt-8 p-6 bg-black border-2 border-[#00f3ff]/20 font-mono text-xs text-[#00f3ff]">
+            <div id="dns-log" class="space-y-1"></div>
+          </div>
+        </section>
+
+        <!-- CIPHER -->
+        <section id="hash-converter" class="tool-card p-8" style="--tool-color: #00FF41;">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="binary-stream">
+              <div class="binary-content">
+                1010<br>0101<br>1100<br>0011<br>1010<br>0101
+              </div>
+            </div>
+            <h2 class="text-[#FBFFFF] font-mono text-xl tracking-widest uppercase mt-1">CIPHER</h2>
+          </div>
+          <div class="flex flex-col xl:flex-row gap-4 mb-6">
+            <input type="text" id="hash-input" placeholder="PAYLOAD..." oninput="generateHashes()" class="flex-1 bg-black border-2 border-[#00FF41]/30 text-[#FBFFFF] p-4 font-mono outline-none">
+            <select id="algo-select" onchange="generateHashes()" class="bg-black border-2 border-[#00FF41]/30 text-[#00FF41] p-4 font-mono outline-none">
+              <option value="SHA256">SHA256</option>
+              <option value="SHA512">SHA512</option>
+              <option value="MD5">MD5</option>
+            </select>
+          </div>
+          <div class="p-6 bg-black border-2 border-[#00FF41]/20 font-mono text-xs break-all text-[#00FF41]">
+            <span id="hash-label" class="text-[#8f00ff] font-bold block mb-2">[SHA256_OUTPUT]</span>
+            <span id="out-hash">AWAITING_INPUT...</span>
+          </div>
+        </section>
+
+        <!-- VAULT_GEN -->
+        <section id="vault-gen" class="tool-card p-8" style="--tool-color: #ff003c;">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="pixel-key">
+              <svg viewBox="0 0 16 16" fill="#ff003c">
+                <path d="M4 2h4v4H4zM2 4h8v2H2zM10 4h4v2h-4zM12 6h2v6h-2zM10 10h2v2h-2zM10 7h2v2h-2z" />
+              </svg>
+            </div>
+            <h2 class="text-[#FBFFFF] font-mono text-xl tracking-widest uppercase mt-1">VAULT_GEN</h2>
+          </div>
+          <div class="space-y-6">
+            <div class="flex justify-between mono text-[10px] text-gray-500">
+              <span>LENGTH</span><span id="length-val" class="text-[#ff003c]">32</span>
+            </div>
+            <input type="range" id="pass-length" min="8" max="128" value="32" oninput="document.getElementById('length-val').innerText = this.value; generatePass();" class="w-full h-2 bg-gray-800 appearance-none accent-[#ff003c]">
+            <div class="flex gap-4">
+                <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="use-numbers" checked onchange="generatePass()" class="accent-[#ff003c]"> <span class="mono text-[10px]">NUMBERS</span></label>
+                <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" id="use-symbols" checked onchange="generatePass()" class="accent-[#ff003c]"> <span class="mono text-[10px]">SYMBOLS</span></label>
+            </div>
+            <div id="pass-display" class="p-4 bg-black border-2 border-[#ff003c]/20 font-mono text-[#00FF41] break-all">GENERATING...</div>
+          </div>
+        </section>
+      </div>
+
+      <!-- LAUNCH AREA -->
+      <div class="launch-area flex justify-center mt-12 mb-32 relative z-10">
+        <a href="toolkit.html" class="arcade-launch-btn px-5 py-3 flex items-center gap-4">
+          <!-- 8-bit Emoji-Style Siren (Left) -->
+          <div class="siren-icon-wrapper w-7 h-7">
+            <svg viewBox="0 0 16 16" class="w-full h-full">
+              <rect x="2" y="12" width="12" height="3" fill="#1D4ED8"/>
+              <path d="M3 12V7C3 4.23858 5.23858 2 8 2C10.7614 2 13 4.23858 13 7V12H3Z" fill="#ff0d0d"/>
+              <rect x="5" y="4" width="2" height="2" fill="white" opacity="0.7"/>
+              <rect x="2" y="11" width="12" height="1" fill="black" opacity="0.2"/>
+            </svg>
+          </div>
+      
+          <span class="font-mono text-sm font-black tracking-[0.3em] uppercase">
+            LAUNCH FULL_TOOLKIT
+          </span>
+      
+          <!-- 8-bit Emoji-Style Siren (Right) -->
+          <div class="siren-icon-wrapper w-7 h-7">
+            <svg viewBox="0 0 16 16" class="w-full h-full">
+              <rect x="2" y="12" width="12" height="3" fill="#1D4ED8"/>
+              <path d="M3 12V7C3 4.23858 5.23858 2 8 2C10.7614 2 13 4.23858 13 7V12H3Z" fill="#ff0d0d"/>
+              <rect x="5" y="4" width="2" height="2" fill="white" opacity="0.7"/>
+              <rect x="2" y="11" width="12" height="1" fill="black" opacity="0.2"/>
+            </svg>
+          </div>
+        </a>
+      </div>
+      <section id="target-acquisition" class="mb-40 relative z-10">
+        
+        <style>
+            @keyframes smoothFloat {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-12px); }
+            }
+            @keyframes fireStep {
+                0% { transform: scale(1) translateY(0); filter: drop-shadow(0 0 8px #ffb000); }
+                33% { transform: scale(1.05) translateY(-1px); filter: drop-shadow(0 0 12px #ff8800); }
+                66% { transform: scale(0.95) translateY(1px) scaleX(1.1); filter: drop-shadow(0 0 4px #ff3300); }
+                100% { transform: scale(1) translateY(0); filter: drop-shadow(0 0 8px #ffb000); }
+            }
+            @keyframes coinRotate {
+                0% { transform: scaleX(1); }
+                25% { transform: scaleX(0.5); }
+                50% { transform: scaleX(0); }
+                75% { transform: scaleX(0.5); }
+                100% { transform: scaleX(1); }
+            }
+            @keyframes doorOpen {
+                0%, 70% { background-color: #1e3a8a; }
+                75%, 100% { background-color: #000; border-color: #3b82f6; }
+            }
+            .ghost-container {
+                position: absolute;
+                top: -40px; 
+                right: 15%;
+                animation: smoothFloat 5s ease-in-out infinite;
+                z-index: 50;
+                pointer-events: none;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                opacity: 0.8;
+                filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.4));
+            }
+            .pixel-fire {
+                display: inline-block;
+                margin-left: 8px;
+                animation: fireStep 0.4s steps(1) infinite; /* steps(1) forces choppy 8-bit frame cuts */
+                transform-origin: bottom center;
+            }
+        </style>
+
+        <div class="ghost-container hidden md:flex group">
+            <svg width="42" height="42" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" style="shape-rendering: crispEdges;">
+                <path d="M4 0h6v1H2v1H1v1H0v8h3v-1H2v-1h3v1h4v-1h3v1h-1v1h3V3h-1V2h-1V1h-2V0z" fill="#00f3ff"/>
+                <rect x="3" y="4" width="2" height="2" fill="#050505"/>
+                <rect x="9" y="4" width="2" height="2" fill="#050505"/>
+                <rect x="3" y="4" width="1" height="1" fill="#FBFFFF"/>
+                <rect x="9" y="4" width="1" height="1" fill="#FBFFFF"/>
+            </svg>
+            <div class="text-[#00f3ff] text-[8px] mt-2 tracking-widest font-mono font-bold">GHST_SYS.daemon</div>
+        </div>
+        
+        <div class="flex items-center justify-center gap-4 mb-16 pt-8">
+          <div class="h-px bg-gray-800 w-12"></div>
+          <h2 class="mono text-white text-lg font-bold tracking-[0.5em] uppercase text-center cursor-default">
+            Target_Acquisition
+          </h2>
+          <div class="h-px bg-gray-800 w-12"></div>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-8 max-w-6xl mx-auto relative z-20">
+          
+          <div class="lg:col-span-4 border border-[#00f3ff]/30 bg-[#050505] p-6 shadow-[0_0_30px_rgba(0,243,255,0.05)] flex flex-col relative group overflow-hidden">
+             <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#00f3ff] to-transparent opacity-50"></div>
+             
+             <div class="flex items-center gap-3 mb-8">
+                <div class="w-16 h-12 flex flex-col items-center justify-center relative overflow-hidden">
+                    <!-- 8-bit White Cloud (Bigger) -->
+                    <svg viewBox="0 0 16 16" width="48" height="48" fill="#fff" class="mb-0.5 relative z-10">
+                        <path d="M4 6h2v1H4zM6 5h2v1H6zM8 6h2v1H8zM4 7h6v2H4zM3 8h8v2H3zM4 10h6v1H4z" />
+                    </svg>
+                    <!-- 8-bit Lightning Bolt (Bigger, Yellow, Half-in) -->
+                    <svg viewBox="0 0 16 16" width="24" height="24" class="lightning-strike absolute bottom-1 z-0 translate-y-3">
+                        <path d="M7 0h2l-2 5h3l-4 6v-4H5l2-4H5z" fill="#FFC700"/>
+                    </svg>
+                </div>
+                <h3 class="text-[#00f3ff] font-mono text-lg tracking-widest font-bold">[THM_UPLINK]</h3>
+             </div>
+             
+             <div class="space-y-8 flex-grow">
+                <div>
+                   <div class="flex justify-between text-xs mono text-gray-500 mb-2"><span>HACKER_CLASS</span><span class="text-white font-bold tracking-widest">0xB[MASTER]</span></div>
+                   <div class="w-full bg-[#0a0a0a] h-1.5 border border-white/10"><div class="bg-[#00f3ff] h-full w-[85%] shadow-[0_0_10px_#00f3ff]"></div></div>
+                </div>
+                <div>
+                   <div class="flex justify-between text-xs mono text-gray-500 mb-2"><span>SYSTEMS_COMPROMISED</span><span class="text-white font-bold">142</span></div>
+                   <div class="w-full bg-[#0a0a0a] h-1.5 border border-white/10"><div class="bg-[#00f3ff] h-full w-[60%] shadow-[0_0_10px_#00f3ff]"></div></div>
+                </div>
+                
+                 <div class="flex justify-between items-center border-t border-white/10 pt-6 text-xs mono">
+                    <span class="text-gray-500 tracking-widest">TOTAL_POINTS:</span>
+                    <div class="flex items-center gap-2">
+                        <span class="text-white font-bold">15,697</span>
+                        <div class="w-4 h-4 bg-yellow-500 rounded-full animate-spin-slow" style="animation: coinRotate 1s linear infinite;"></div>
+                    </div>
+                 </div>
+
+                 <div class="flex justify-between items-center border-t border-white/10 pt-4 mt-4 text-xs mono">
+                    <span class="text-gray-500 tracking-widest">ROOMS_CLEARED:</span>
+                    <div class="flex items-center gap-2">
+                        <span class="text-white font-bold">165</span>
+                        <div class="door-icon w-4 h-5 bg-blue-900 border-2 border-white relative overflow-hidden" style="animation: doorOpen 4s steps(1) infinite;">
+                            <div class="absolute inset-0 bg-black opacity-0 transition-opacity duration-300"></div>
+                        </div>
+                    </div>
+                 </div>
+
+                 <div class="flex justify-between items-center border-t border-white/10 pt-6 text-xs mono mt-auto">
+                    <span class="text-gray-500 tracking-widest">ACTIVE_STREAK:</span>
+                    <div class="flex items-center">
+                        <span class="text-[#ffb000] font-black text-sm">14_DAYS</span>
+                        <svg width="14" height="16" viewBox="0 0 14 16" xmlns="http://www.w3.org/2000/svg" class="pixel-fire" style="shape-rendering: crispEdges;">
+                             <rect x="6" y="0" width="2" height="2" fill="#ff3300"/>
+                             <rect x="4" y="2" width="4" height="2" fill="#ff3300"/>
+                             <rect x="8" y="4" width="2" height="2" fill="#ff3300"/>
+                             <rect x="2" y="4" width="2" height="4" fill="#ff3300"/>
+                             <rect x="10" y="6" width="2" height="4" fill="#ff3300"/>
+                             <rect x="0" y="8" width="2" height="4" fill="#ff3300"/>
+                             <rect x="2" y="12" width="10" height="2" fill="#ff3300"/>
+                             <rect x="4" y="14" width="6" height="2" fill="#ff3300"/>
+                             <rect x="6" y="4" width="2" height="4" fill="#ff8800"/>
+                             <rect x="4" y="8" width="6" height="4" fill="#ff8800"/>
+                             <rect x="8" y="6" width="2" height="2" fill="#ff8800"/>
+                             <rect x="2" y="10" width="2" height="2" fill="#ff8800"/>
+                             <rect x="6" y="8" width="2" height="4" fill="#FBFFFF"/>
+                             <rect x="4" y="10" width="2" height="2" fill="#FBFFFF"/>
+                        </svg>
+                    </div>
+                 </div>
+             </div>
+          </div>
+
+          <div class="lg:col-span-8 border border-white/10 bg-[#050505] p-6 relative">
+              <h3 class="text-white font-mono text-xs tracking-[0.3em] font-bold mb-6 uppercase flex justify-between">
+                <span>Recent_Compromises</span>
+                <span class="text-[#00FF41] animate-pulse">[LIVE_FEED]</span>
+              </h3>
+              
+              <div class="space-y-3">
+                 <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-[#0a0a0a] border-l-2 border-[#00FF41] hover:bg-[#111] transition-colors group cursor-crosshair">
+                    <div class="flex flex-col">
+                       <span class="text-[#FBFFFF] font-mono font-bold text-sm group-hover:text-[#00FF41] transition-colors">Kenobi</span>
+                       <span class="text-gray-500 font-mono text-[10px] mt-1">10.10.34.112 // Linux // Samba_Enum</span>
+                    </div>
+                    <div class="flex items-center gap-6 mt-3 sm:mt-0">
+                       <span class="text-[#00FF41] font-mono text-[9px] border border-[#00FF41]/30 px-2 py-1 bg-[#00FF41]/5 tracking-widest">EASY</span>
+                       <span class="text-[#8f00ff] font-mono text-[10px] font-bold tracking-widest w-20 text-right">[ROOTED]</span>
+                    </div>
+                 </div>
+                 
+                 <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-[#0a0a0a] border-l-2 border-[#ffb000] hover:bg-[#111] transition-colors group cursor-crosshair">
+                    <div class="flex flex-col">
+                       <span class="text-[#FBFFFF] font-mono font-bold text-sm group-hover:text-[#ffb000] transition-colors">Retro</span>
+                       <span class="text-gray-500 font-mono text-[10px] mt-1">10.10.11.89 // Windows // IIS_Exploit</span>
+                    </div>
+                    <div class="flex items-center gap-6 mt-3 sm:mt-0">
+                       <span class="text-[#ffb000] font-mono text-[9px] border border-[#ffb000]/30 px-2 py-1 bg-[#ffb000]/5 tracking-widest">MEDIUM</span>
+                       <span class="text-[#8f00ff] font-mono text-[10px] font-bold tracking-widest w-20 text-right">[ROOTED]</span>
+                    </div>
+                 </div>
+
+                 <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-[#0a0a0a] border-l-2 border-[#ff003c] hover:bg-[#111] transition-colors group cursor-crosshair">
+                    <div class="flex flex-col">
+                       <span class="text-[#FBFFFF] font-mono font-bold text-sm group-hover:text-[#ff003c] transition-colors">Daily Bugle</span>
+                       <span class="text-gray-500 font-mono text-[10px] mt-1">10.10.55.201 // Linux // Joomla_SQLi</span>
+                    </div>
+                    <div class="flex items-center gap-6 mt-3 sm:mt-0">
+                       <span class="text-[#ff003c] font-mono text-[9px] border border-[#ff003c]/30 px-2 py-1 bg-[#ff003c]/5 tracking-widest">HARD</span>
+                       <span class="text-[#8f00ff] font-mono text-[10px] font-bold tracking-widest w-20 text-right">[ROOTED]</span>
+                    </div>
+                 </div>
+
+                 <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-[#0a0a0a] border-l-2 border-[#00f3ff] hover:bg-[#111] transition-colors relative overflow-hidden group cursor-wait">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-[#00f3ff]/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>
+                    <div class="flex flex-col relative z-10">
+                       <span class="text-[#FBFFFF] font-mono font-bold text-sm">Relevant</span>
+                       <span class="text-gray-500 font-mono text-[10px] mt-1">10.10.X.X // Windows // PrintSpoofer</span>
+                    </div>
+                    <div class="flex items-center gap-6 mt-3 sm:mt-0 relative z-10">
+                       <span class="text-[#ffb000] font-mono text-[9px] border border-[#ffb000]/30 px-2 py-1 bg-[#ffb000]/5 tracking-widest">MEDIUM</span>
+                       <span class="text-[#00f3ff] animate-pulse font-mono text-[10px] font-bold tracking-widest w-20 text-right">[SCANNING]</span>
+                    </div>
+                 </div>
+              </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="social-uplink" class="mb-40 relative z-10">
+        <style>
+            .social-card {
+                background: #050505;
+                border: 4px solid var(--hover-color);
+                box-shadow: 8px 8px 0px var(--hover-color);
+                position: relative;
+                transition: none !important;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+                cursor: pointer;
+                text-decoration: none;
+            }
+            .social-card:hover, .social-card:active {
+                transform: translate(4px, 4px);
+                box-shadow: 4px 4px 0px var(--hover-color);
+            }
+            .tooltip {
+                display: none;
+                position: absolute;
+                top: -50px;
+                background: #000;
+                border: 2px solid var(--hover-color);
+                color: var(--hover-color);
+                font-family: monospace;
+                font-size: 12px;
+                font-weight: bold;
+                padding: 5px 10px;
+                white-space: nowrap;
+                z-index: 100;
+            }
+            .social-card:hover .tooltip, .social-card:active .tooltip {
+                display: block;
+            }
+            @keyframes noteBounce {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-4px); }
+            }
+            .spotify-bounce {
+                animation: noteBounce 0.4s steps(2) infinite;
+            }
+        </style>
+
+        <div class="flex items-center justify-center gap-4 mb-16 pt-8">
+          <div class="h-[4px] bg-gray-800 w-12"></div>
+          <h2 class="mono text-white text-lg font-bold tracking-[0.5em] uppercase text-center cursor-default flex items-center font-mono">
+            COMMUNICATIONS_ARRAY
+          </h2>
+          <div class="h-[4px] bg-gray-800 w-12"></div>
+        </div>
+
+        <div class="flex justify-center items-center max-w-5xl mx-auto">
+            <!-- GitHub -->
+            <a href="#" class="social-card" style="--hover-color: #ffffff;">
+                <div class="tooltip">[GITHUB]</div>
+                <svg width="40" height="40" viewBox="0 0 16 16" shape-rendering="crispEdges">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38l-.01-1.34c-2.23.48-2.7-1.08-2.7-1.08-.36-.92-.89-1.16-.89-1.16-.73-.5.05-.49.05-.49.8.06 1.22.82 1.22.82.71 1.22 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.06-1.86 3.75-3.64 3.95.29.25.54.73.54 1.48l-.01 2.2c0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" fill="white"/>
+                </svg>
+            </a>
+        </div>
+      </section>
+    
+ 
+      <section id="closing-message" class="relative z-10">
+        <div class="flex items-center justify-center gap-4 mb-32 pt-8">
+          <div class="h-[4px] bg-gray-800 w-12"></div>
+          <h2 class="text-white text-lg font-bold tracking-[0.5em] uppercase text-center cursor-default flex items-center font-mono">
+            THANKS FOR VISITING
+          </h2>
+          <div class="h-[4px] bg-gray-800 w-12"></div>
+        </div>
+      </section>
+
+     <script>async function executeHoleheScan(){const email = document.getElementById("target-email").value; const log = document.getElementById("results-log"); const output = document.getElementById("scan-output"); if(!email) return; output.classList.remove("hidden"); log.innerHTML = "<div class=\"text-[#00FF41] animate-pulse\">> [SYSTEM] INITIATING_MULTI-VECTOR_OSINT_SCAN...</div>"; try { const response = await fetch("http://localhost:5001/scan", { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({email}) }); const data = await response.json(); log.innerHTML = ""; /* 1. FOOTPRINT_INTEL */ log.innerHTML += "<div class='text-[#8f00ff] font-bold mt-4 mb-2'>[FOOTPRINT_INTEL]</div>"; if(data.holehe && data.holehe.length > 0){ data.holehe.forEach(h => { log.innerHTML += `<div class="flex justify-between border-b border-white/5 py-1"><span class="text-[#00FF41]">> ${h}</span><span class="text-[#8f00ff] font-bold">[VERIFIED]</span></div>`; }); } else { log.innerHTML += "<div class='text-gray-600 italic'>> NO_DATA_DETECTED</div>"; } /* 2. IDENTITY_INTEL */ log.innerHTML += "<div class='text-[#8f00ff] font-bold mt-6 mb-2'>[IDENTITY_INTEL]</div>"; if(data.blackbird && data.blackbird.length > 0){ data.blackbird.forEach(b => { log.innerHTML += `<div class="text-[#00FF41] py-1">> ${b}</div>`; }); } else { log.innerHTML += "<div class='text-gray-600 italic'>> NO_DATA_DETECTED</div>"; } /* 3. BREACH_INTEL */ log.innerHTML += "<div class='text-[#ff003c] font-bold mt-6 mb-2'>[BREACH_INTEL]</div>"; if(data.h8mail && data.h8mail.length > 0){ data.h8mail.forEach(m => { log.innerHTML += `<div class="flex justify-between border-b border-white/5 py-1"><span class="text-[#ff003c]">> ${m}</span><span class="text-[#ff003c] font-bold">[COMPROMISED]</span></div>`; }); } else { log.innerHTML += "<div class='text-gray-600 italic'>> NO_DATA_DETECTED</div>"; } } catch(e) { log.innerHTML += "<div class=\"text-[#ff003c]\">> [ERROR] UPLINK_FAILED. IS_BACKEND_RUNNING?</div>"; }} function generateHashes(){const t=document.getElementById("hash-input").value; const algo=document.getElementById("algo-select").value; const out=document.getElementById("out-hash"); const label=document.getElementById("hash-label"); label.innerText=`[${algo}_OUTPUT]`; if(!t){out.innerText="AWAITING_INPUT...";return;} if(algo==="Base64"){out.innerText=btoa(t);} else if(algo==="Hex"){out.innerText=t.split("").map(c=>c.charCodeAt(0).toString(16).padStart(2,"0")).join("");} else {out.innerText=CryptoJS[algo](t).toString();}} function generatePass(){const l=document.getElementById("pass-length").value; const n=document.getElementById("use-numbers").checked; const s=document.getElementById("use-symbols").checked; let c="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"; if(n)c+="0123456789"; if(s)c+="!@#$%^&*()_+~`|}{[]:;?><,./-="; let r=""; const a=new Uint32Array(parseInt(l)); window.crypto.getRandomValues(a); for(let i=0;i<l;i++){r+=c.charAt(a[i]%c.length);} document.getElementById("pass-display").innerText=r;} async function executeDnsLookup(){const domain = document.getElementById("target-domain").value; const log = document.getElementById("dns-log"); const output = document.getElementById("dns-output"); if(!domain) return; output.classList.remove("hidden"); log.innerHTML = "<div class=\"text-[#00f3ff] animate-pulse\">> [SYSTEM] INITIATING_DNS_RECONNAISSANCE...</div>"; try { const response = await fetch("http://localhost:5001/dns", { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({domain}) }); const data = await response.json(); log.innerHTML = ""; if(data.error){ log.innerHTML = `<div class="text-[#ff003c]">> [ERROR] ${data.error}</div>`; return; } Object.keys(data).forEach(type => { if(data[type].length > 0){ data[type].forEach(val => { log.innerHTML += `<div class="flex justify-between border-b border-white/5 py-1"><span class="text-[#00f3ff]">> ${val}</span><span class="text-[#00f3ff] font-bold">[${type}]</span></div>`; }); } else { log.innerHTML += `<div class="text-gray-600 italic">> NO_${type}_RECORDS_FOUND</div>`; } }); } catch(e) { log.innerHTML += "<div class=\"text-[#ff003c]\">> [ERROR] UPLINK_FAILED. IS_BACKEND_RUNNING?</div>"; }} async function executeSpecterScan(){const username = document.getElementById("specter-target").value; const log = document.getElementById("specter-results"); const output = document.getElementById("specter-output"); if(!username) return; output.classList.remove("hidden"); log.innerHTML = "<div class=\"text-[#ffb000] animate-pulse\">> [SYSTEM] INITIATING_SPECTER_USERNAME_RECON...</div>"; try { const response = await fetch("http://localhost:5001/alias", { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({username}) }); const data = await response.json(); log.innerHTML = `<div class='text-gray-500 mb-2'>> SCANNED: ${data.scanned} | FOUND: ${data.found.length}</div>`; if(data.found.length > 0){ data.found.forEach(url => { log.innerHTML += `<div class="py-1"><a href="${url}" target="_blank" class="text-[#00FF41] hover:text-[#ffb000] transition-colors">> ${url}</a></div>`; }); } else { log.innerHTML += "<div class='text-gray-600 italic'>> NO_PROFILES_FOUND</div>"; } } catch(e) { log.innerHTML += "<div class=\"text-[#ff003c]\">> [ERROR] UPLINK_FAILED. IS_BACKEND_RUNNING?</div>"; }} document.addEventListener("DOMContentLoaded",()=>{if(document.getElementById("pass-length"))generatePass();});</script>
+    <script src="terminal.js?v=2"></script>
+   <script src="bg.js"></script>
+<script src="deadswitch.js"></script>
+</body>
+</html>
