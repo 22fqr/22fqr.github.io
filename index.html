@@ -124,9 +124,7 @@
         </div>
 
         <div class="lg:col-span-5 flex flex-col items-center justify-center relative mt-10 lg:mt-0 order-1 lg:order-2">
-          <!-- Avatar Container -->
           <div class="relative w-72 h-72 border-[4px] border-white bg-black z-20 overflow-hidden rounded-full shadow-[8px_8px_0px_#8f00ff]">
-            <!-- Radar Sweep -->
             <div class="radar-line"></div>
             
             <img src="assets/22fqr.jpg" alt="22fqr" class="w-full h-full object-cover grayscale contrast-150 rounded-full" />
@@ -140,7 +138,6 @@
               <div class="mono text-[10px] text-[#ff003c] font-bold tracking-tighter">
                 SYSTEM_OVERLORD
               </div>
-              <!-- Pixel Fire SVG -->
               <svg class="w-6 h-6 pixel-fire" viewBox="0 0 8 8" fill="#ff003c">
                 <rect x="3" y="0" width="2" height="1" opacity="0.6" />
                 <rect x="2" y="1" width="4" height="1" />
@@ -227,7 +224,6 @@
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-          <!-- 01 // RECONNAISSANCE -->
           <div class="retro-card p-6" style="--card-color: #00f3ff; --card-shadow: rgba(0, 243, 255, 0.3);">
             <div class="flex justify-between items-center mb-4">
               <h4 class="text-[#00f3ff] mono text-sm font-bold uppercase">
@@ -260,7 +256,6 @@
             </ul>
           </div>
 
-          <!-- 02 // EXPLOITATION -->
           <div class="retro-card p-6" style="--card-color: #ff003c; --card-shadow: rgba(255, 0, 60, 0.3);">
             <div class="flex justify-between items-center mb-4">
               <h4 class="text-[#ff003c] mono text-sm font-bold uppercase">
@@ -293,7 +288,6 @@
             </ul>
           </div>
 
-          <!-- 03 // ACTIVE DIRECTORY -->
           <div class="retro-card p-6" style="--card-color: #00FF41; --card-shadow: rgba(0, 255, 65, 0.3);">
             <div class="flex justify-between items-center mb-4">
               <h4 class="text-[#00FF41] mono text-sm font-bold uppercase">
@@ -326,7 +320,6 @@
             </ul>
           </div>
 
-          <!-- 04 // C2 INFRASTRUCTURE -->
           <div class="retro-card p-6" style="--card-color: #a855f7; --card-shadow: rgba(168, 85, 247, 0.3);">
             <div class="flex justify-between items-center mb-4">
               <h4 class="text-[#a855f7] mono text-sm font-bold uppercase">
@@ -359,7 +352,6 @@
             </ul>
           </div>
 
-          <!-- 05 // PRIVILEGE ESC -->
           <div class="retro-card p-6" style="--card-color: #fbbf24; --card-shadow: rgba(251, 191, 36, 0.3);">
             <div class="flex justify-between items-center mb-4">
               <h4 class="text-[#fbbf24] mono text-sm font-bold uppercase">
@@ -392,7 +384,6 @@
             </ul>
           </div>
 
-          <!-- 06 // VULN ANALYSIS -->
           <div class="retro-card p-6" style="--card-color: #ffffff; --card-shadow: rgba(255, 255, 255, 0.3);">
             <div class="flex justify-between items-center mb-4">
               <h4 class="text-white mono text-sm font-bold uppercase">
@@ -566,7 +557,6 @@
 
         <div class="max-w-4xl mx-auto">
           <div class="saturn-frame">
-            <!-- Header Bar -->
             <div class="bg-[#0a0a0a] px-4 py-2 flex justify-between items-center border-b-[4px] border-[#FBFFFF]/30 relative z-20">
               <div class="flex gap-4 items-center">
                 <div class="flex gap-2">
@@ -580,9 +570,7 @@
               </div>
             </div>
 
-            <!-- Terminal Window -->
             <div id="terminal-window" class="px-6 pb-6 pt-0 h-[450px] overflow-y-auto font-mono text-sm space-y-1 font-light text-gray-400 scrollbar-hide relative">
-              <!-- Star Rain Background -->
               <div class="star-rain-container">
                 <div class="star-drop" style="left: 10%; animation-duration: 3s; animation-delay: 0s;"></div>
                 <div class="star-drop" style="left: 30%; animation-duration: 5s; animation-delay: 1s;"></div>
@@ -594,7 +582,6 @@
 
               <div id="terminal-sticky-header" class="sticky top-0 z-50 bg-[#020202]/90 mb-6 pb-4 pt-6 border-b-[4px] border-dashed border-[#FBFFFF]/40 select-none">
                 <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6 mb-4">
-                  <!-- Saturn Logo -->
                   <div class="saturn-logo">
                     <div class="saturn-planet">
                       <div class="saturn-bands"></div>
@@ -633,12 +620,10 @@
                 </div>
               </div>
               
-              <!-- Content Wrapper to ensure text is above stars -->
               <div id="terminal-output" class="relative z-10">
               </div>
             </div>
 
-            <!-- Input Area -->
             <div class="p-4 bg-[#050505] border-t-[4px] border-[#FBFFFF]/30 flex items-center relative z-30">
               <span id="terminal-prompt-label" class="saturn-prompt mr-3 font-bold text-xs select-none">guest@22fqr:~$</span>
               <div class="flex-1 flex items-center">
@@ -805,7 +790,6 @@
         }
       </style>
         <div id="tools-grid" class="max-w-6xl mx-auto my-20 grid grid-cols-1 lg:grid-cols-2 gap-8 relative z-10">
-        <!-- SPECTER -->
         <section id="specter-scanner" class="tool-card p-8" style="--tool-color: #ffff00;">
           <div class="flex items-center gap-4 mb-6">
             <div class="specter-ghost w-[40px] h-[40px]">
@@ -826,7 +810,6 @@
           </div>
         </section>
 
-        <!-- DNS_RECON -->
         <section id="dns-recon" class="tool-card p-8" style="--tool-color: #00f3ff;">
           <div class="flex items-center gap-4 mb-6">
             <div class="relative w-10 h-10">
@@ -848,7 +831,6 @@
           </div>
         </section>
 
-        <!-- CIPHER -->
         <section id="hash-converter" class="tool-card p-8" style="--tool-color: #00FF41;">
           <div class="flex items-center gap-4 mb-6">
             <div class="binary-stream">
@@ -872,7 +854,6 @@
           </div>
         </section>
 
-        <!-- VAULT_GEN -->
         <section id="vault-gen" class="tool-card p-8" style="--tool-color: #ff003c;">
           <div class="flex items-center gap-4 mb-6">
             <div class="pixel-key">
@@ -896,10 +877,8 @@
         </section>
       </div>
 
-      <!-- LAUNCH AREA -->
       <div class="launch-area flex justify-center mt-12 mb-32 relative z-10">
         <a href="toolkit.html" class="arcade-launch-btn px-5 py-3 flex items-center gap-4">
-          <!-- 8-bit Emoji-Style Siren (Left) -->
           <div class="siren-icon-wrapper w-7 h-7">
             <svg viewBox="0 0 16 16" class="w-full h-full">
               <rect x="2" y="12" width="12" height="3" fill="#1D4ED8"/>
@@ -913,7 +892,6 @@
             LAUNCH FULL_TOOLKIT
           </span>
       
-          <!-- 8-bit Emoji-Style Siren (Right) -->
           <div class="siren-icon-wrapper w-7 h-7">
             <svg viewBox="0 0 16 16" class="w-full h-full">
               <rect x="2" y="12" width="12" height="3" fill="#1D4ED8"/>
@@ -995,11 +973,9 @@
              
              <div class="flex items-center gap-3 mb-8">
                 <div class="w-16 h-12 flex flex-col items-center justify-center relative overflow-hidden">
-                    <!-- 8-bit White Cloud (Bigger) -->
                     <svg viewBox="0 0 16 16" width="48" height="48" fill="#fff" class="mb-0.5 relative z-10">
                         <path d="M4 6h2v1H4zM6 5h2v1H6zM8 6h2v1H8zM4 7h6v2H4zM3 8h8v2H3zM4 10h6v1H4z" />
                     </svg>
-                    <!-- 8-bit Lightning Bolt (Bigger, Yellow, Half-in) -->
                     <svg viewBox="0 0 16 16" width="24" height="24" class="lightning-strike absolute bottom-1 z-0 translate-y-3">
                         <path d="M7 0h2l-2 5h3l-4 6v-4H5l2-4H5z" fill="#FFC700"/>
                     </svg>
@@ -1171,7 +1147,6 @@
         </div>
 
         <div class="flex justify-center items-center max-w-5xl mx-auto">
-            <!-- GitHub -->
             <a href="#" class="social-card" style="--hover-color: #ffffff;">
                 <div class="tooltip">[GITHUB]</div>
                 <svg width="40" height="40" viewBox="0 0 16 16" shape-rendering="crispEdges">
@@ -1191,154 +1166,153 @@
           <div class="h-[4px] bg-gray-800 w-12"></div>
         </div>
       </section>
-      <script>
-    // GHOST OS PRODUCTION UPLINK
-    const BACKEND_URL = "https://22fqr-ghost-os-backend.hf.space";
 
-    async function executeHoleheScan() {
-        const email = document.getElementById("target-email").value; 
-        const log = document.getElementById("results-log"); 
-        const output = document.getElementById("scan-output"); 
-        if(!email) return; 
-        
-        output.classList.remove("hidden"); 
-        log.innerHTML = "<div class=\"text-[#00FF41] animate-pulse\">> [SYSTEM] INITIATING_MULTI-VECTOR_OSINT_SCAN...</div>"; 
-        
-        try { 
-            const response = await fetch(`${BACKEND_URL}/scan`, { 
-                method: "POST", 
-                headers: {"Content-Type": "application/json"}, 
-                body: JSON.stringify({email}) 
-            }); 
-            const data = await response.json(); 
-            log.innerHTML = ""; 
+    <script>
+        // GHOST OS PRODUCTION UPLINK
+        const BACKEND_URL = "https://22fqr-ghost-os-backend.hf.space";
+    
+        async function executeHoleheScan() {
+            const email = document.getElementById("target-email").value; 
+            const log = document.getElementById("results-log"); 
+            const output = document.getElementById("scan-output"); 
+            if(!email) return; 
             
-            /* 1. FOOTPRINT_INTEL */ 
-            log.innerHTML += "<div class='text-[#8f00ff] font-bold mt-4 mb-2'>[FOOTPRINT_INTEL]</div>"; 
-            if(data.holehe && data.holehe.length > 0){ 
-                data.holehe.forEach(h => { log.innerHTML += `<div class="flex justify-between border-b border-white/5 py-1"><span class="text-[#00FF41]">> ${h}</span><span class="text-[#8f00ff] font-bold">[VERIFIED]</span></div>`; }); 
-            } else { 
-                log.innerHTML += "<div class='text-gray-600 italic'>> NO_DATA_DETECTED</div>"; 
-            } 
+            output.classList.remove("hidden"); 
+            log.innerHTML = "<div class=\"text-[#00FF41] animate-pulse\">> [SYSTEM] INITIATING_MULTI-VECTOR_OSINT_SCAN...</div>"; 
             
-            /* 2. IDENTITY_INTEL */ 
-            log.innerHTML += "<div class='text-[#8f00ff] font-bold mt-6 mb-2'>[IDENTITY_INTEL]</div>"; 
-            if(data.blackbird && data.blackbird.length > 0){ 
-                data.blackbird.forEach(b => { log.innerHTML += `<div class="text-[#00FF41] py-1">> ${b}</div>`; }); 
-            } else { 
-                log.innerHTML += "<div class='text-gray-600 italic'>> NO_DATA_DETECTED</div>"; 
-            } 
-            
-            /* 3. BREACH_INTEL */ 
-            log.innerHTML += "<div class='text-[#ff003c] font-bold mt-6 mb-2'>[BREACH_INTEL]</div>"; 
-            if(data.h8mail && data.h8mail.length > 0){ 
-                data.h8mail.forEach(m => { log.innerHTML += `<div class="flex justify-between border-b border-white/5 py-1"><span class="text-[#ff003c]">> ${m}</span><span class="text-[#ff003c] font-bold">[COMPROMISED]</span></div>`; }); 
-            } else { 
-                log.innerHTML += "<div class='text-gray-600 italic'>> NO_DATA_DETECTED</div>"; 
-            } 
-        } catch(e) { 
-            log.innerHTML += "<div class=\"text-[#ff003c]\">> [ERROR] UPLINK_FAILED. IS_BACKEND_RUNNING?</div>"; 
-        }
-    } 
-
-    function generateHashes() {
-        const t = document.getElementById("hash-input").value; 
-        const algo = document.getElementById("algo-select").value; 
-        const out = document.getElementById("out-hash"); 
-        const label = document.getElementById("hash-label"); 
-        
-        label.innerText = `[${algo}_OUTPUT]`; 
-        if(!t){ out.innerText = "AWAITING_INPUT..."; return; } 
-        
-        if(algo === "Base64"){ out.innerText = btoa(t); } 
-        else if(algo === "Hex"){ out.innerText = t.split("").map(c=>c.charCodeAt(0).toString(16).padStart(2,"0")).join(""); } 
-        else { out.innerText = CryptoJS[algo](t).toString(); }
-    } 
-
-    function generatePass() {
-        const l = document.getElementById("pass-length").value; 
-        const n = document.getElementById("use-numbers").checked; 
-        const s = document.getElementById("use-symbols").checked; 
-        let c = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
-        
-        if(n) c += "0123456789"; 
-        if(s) c += "!@#$%^&*()_+~`|}{[]:;?><,./-="; 
-        
-        let r = ""; 
-        const a = new Uint32Array(parseInt(l)); 
-        window.crypto.getRandomValues(a); 
-        for(let i=0; i<l; i++){ r += c.charAt(a[i] % c.length); } 
-        document.getElementById("pass-display").innerText = r;
-    } 
-
-    async function executeDnsLookup() {
-        const domain = document.getElementById("target-domain").value; 
-        const log = document.getElementById("dns-log"); 
-        const output = document.getElementById("dns-output"); 
-        if(!domain) return; 
-        
-        output.classList.remove("hidden"); 
-        log.innerHTML = "<div class=\"text-[#00f3ff] animate-pulse\">> [SYSTEM] INITIATING_DNS_RECONNAISSANCE...</div>"; 
-        
-        try { 
-            const response = await fetch(`${BACKEND_URL}/dns`, { 
-                method: "POST", 
-                headers: {"Content-Type": "application/json"}, 
-                body: JSON.stringify({domain}) 
-            }); 
-            const data = await response.json(); 
-            log.innerHTML = ""; 
-            
-            if(data.error){ log.innerHTML = `<div class="text-[#ff003c]">> [ERROR] ${data.error}</div>`; return; } 
-            
-            Object.keys(data).forEach(type => { 
-                if(data[type].length > 0){ 
-                    data[type].forEach(val => { log.innerHTML += `<div class="flex justify-between border-b border-white/5 py-1"><span class="text-[#00f3ff]">> ${val}</span><span class="text-[#00f3ff] font-bold">[${type}]</span></div>`; }); 
+            try { 
+                const response = await fetch(`${BACKEND_URL}/scan`, { 
+                    method: "POST", 
+                    headers: {"Content-Type": "application/json"}, 
+                    body: JSON.stringify({email}) 
+                }); 
+                const data = await response.json(); 
+                log.innerHTML = ""; 
+                
+                /* 1. FOOTPRINT_INTEL */ 
+                log.innerHTML += "<div class='text-[#8f00ff] font-bold mt-4 mb-2'>[FOOTPRINT_INTEL]</div>"; 
+                if(data.holehe && data.holehe.length > 0){ 
+                    data.holehe.forEach(h => { log.innerHTML += `<div class="flex justify-between border-b border-white/5 py-1"><span class="text-[#00FF41]">> ${h}</span><span class="text-[#8f00ff] font-bold">[VERIFIED]</span></div>`; }); 
                 } else { 
-                    log.innerHTML += `<div class="text-gray-600 italic">> NO_${type}_RECORDS_FOUND</div>`; 
+                    log.innerHTML += "<div class='text-gray-600 italic'>> NO_DATA_DETECTED</div>"; 
                 } 
-            }); 
-        } catch(e) { 
-            log.innerHTML += "<div class=\"text-[#ff003c]\">> [ERROR] UPLINK_FAILED. IS_BACKEND_RUNNING?</div>"; 
-        }
-    } 
-
-    async function executeSpecterScan() {
-        const username = document.getElementById("specter-target").value; 
-        const log = document.getElementById("specter-results"); 
-        const output = document.getElementById("specter-output"); 
-        if(!username) return; 
-        
-        output.classList.remove("hidden"); 
-        log.innerHTML = "<div class=\"text-[#ffb000] animate-pulse\">> [SYSTEM] INITIATING_SPECTER_USERNAME_RECON...</div>"; 
-        
-        try { 
-            const response = await fetch(`${BACKEND_URL}/alias`, { 
-                method: "POST", 
-                headers: {"Content-Type": "application/json"}, 
-                body: JSON.stringify({username}) 
-            }); 
-            const data = await response.json(); 
-            log.innerHTML = `<div class='text-gray-500 mb-2'>> SCANNED: ${data.scanned} | FOUND: ${data.found.length}</div>`; 
+                
+                /* 2. IDENTITY_INTEL */ 
+                log.innerHTML += "<div class='text-[#8f00ff] font-bold mt-6 mb-2'>[IDENTITY_INTEL]</div>"; 
+                if(data.blackbird && data.blackbird.length > 0){ 
+                    data.blackbird.forEach(b => { log.innerHTML += `<div class="text-[#00FF41] py-1">> ${b}</div>`; }); 
+                } else { 
+                    log.innerHTML += "<div class='text-gray-600 italic'>> NO_DATA_DETECTED</div>"; 
+                } 
+                
+                /* 3. BREACH_INTEL */ 
+                log.innerHTML += "<div class='text-[#ff003c] font-bold mt-6 mb-2'>[BREACH_INTEL]</div>"; 
+                if(data.h8mail && data.h8mail.length > 0){ 
+                    data.h8mail.forEach(m => { log.innerHTML += `<div class="flex justify-between border-b border-white/5 py-1"><span class="text-[#ff003c]">> ${m}</span><span class="text-[#ff003c] font-bold">[COMPROMISED]</span></div>`; }); 
+                } else { 
+                    log.innerHTML += "<div class='text-gray-600 italic'>> NO_DATA_DETECTED</div>"; 
+                } 
+            } catch(e) { 
+                log.innerHTML += "<div class=\"text-[#ff003c]\">> [ERROR] UPLINK_FAILED. IS_BACKEND_RUNNING?</div>"; 
+            }
+        } 
+    
+        function generateHashes() {
+            const t = document.getElementById("hash-input").value; 
+            const algo = document.getElementById("algo-select").value; 
+            const out = document.getElementById("out-hash"); 
+            const label = document.getElementById("hash-label"); 
             
-            if(data.found.length > 0){ 
-                data.found.forEach(url => { log.innerHTML += `<div class="py-1"><a href="${url}" target="_blank" class="text-[#00FF41] hover:text-[#ffb000] transition-colors">> ${url}</a></div>`; }); 
-            } else { 
-                log.innerHTML += "<div class='text-gray-600 italic'>> NO_PROFILES_FOUND</div>"; 
-            } 
-        } catch(e) { 
-            log.innerHTML += "<div class=\"text-[#ff003c]\">> [ERROR] UPLINK_FAILED. IS_BACKEND_RUNNING?</div>"; 
-        }
-    } 
-
-    document.addEventListener("DOMContentLoaded", () => {
-        if(document.getElementById("pass-length")) generatePass();
-    });
-</script>
-
-
-   <script src="terminal.js?v=2"></script>
-   <script src="bg.js"></script>
-<script src="deadswitch.js"></script>
+            label.innerText = `[${algo}_OUTPUT]`; 
+            if(!t){ out.innerText = "AWAITING_INPUT..."; return; } 
+            
+            if(algo === "Base64"){ out.innerText = btoa(t); } 
+            else if(algo === "Hex"){ out.innerText = t.split("").map(c=>c.charCodeAt(0).toString(16).padStart(2,"0")).join(""); } 
+            else { out.innerText = CryptoJS[algo](t).toString(); }
+        } 
+    
+        function generatePass() {
+            const l = document.getElementById("pass-length").value; 
+            const n = document.getElementById("use-numbers").checked; 
+            const s = document.getElementById("use-symbols").checked; 
+            let c = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
+            
+            if(n) c += "0123456789"; 
+            if(s) c += "!@#$%^&*()_+~`|}{[]:;?><,./-="; 
+            
+            let r = ""; 
+            const a = new Uint32Array(parseInt(l)); 
+            window.crypto.getRandomValues(a); 
+            for(let i=0; i<l; i++){ r += c.charAt(a[i] % c.length); } 
+            document.getElementById("pass-display").innerText = r;
+        } 
+    
+        async function executeDnsLookup() {
+            const domain = document.getElementById("target-domain").value; 
+            const log = document.getElementById("dns-log"); 
+            const output = document.getElementById("dns-output"); 
+            if(!domain) return; 
+            
+            output.classList.remove("hidden"); 
+            log.innerHTML = "<div class=\"text-[#00f3ff] animate-pulse\">> [SYSTEM] INITIATING_DNS_RECONNAISSANCE...</div>"; 
+            
+            try { 
+                const response = await fetch(`${BACKEND_URL}/dns`, { 
+                    method: "POST", 
+                    headers: {"Content-Type": "application/json"}, 
+                    body: JSON.stringify({domain}) 
+                }); 
+                const data = await response.json(); 
+                log.innerHTML = ""; 
+                
+                if(data.error){ log.innerHTML = `<div class="text-[#ff003c]">> [ERROR] ${data.error}</div>`; return; } 
+                
+                Object.keys(data).forEach(type => { 
+                    if(data[type].length > 0){ 
+                        data[type].forEach(val => { log.innerHTML += `<div class="flex justify-between border-b border-white/5 py-1"><span class="text-[#00f3ff]">> ${val}</span><span class="text-[#00f3ff] font-bold">[${type}]</span></div>`; }); 
+                    } else { 
+                        log.innerHTML += `<div class="text-gray-600 italic">> NO_${type}_RECORDS_FOUND</div>`; 
+                    } 
+                }); 
+            } catch(e) { 
+                log.innerHTML += "<div class=\"text-[#ff003c]\">> [ERROR] UPLINK_FAILED. IS_BACKEND_RUNNING?</div>"; 
+            }
+        } 
+    
+        async function executeSpecterScan() {
+            const username = document.getElementById("specter-target").value; 
+            const log = document.getElementById("specter-results"); 
+            const output = document.getElementById("specter-output"); 
+            if(!username) return; 
+            
+            output.classList.remove("hidden"); 
+            log.innerHTML = "<div class=\"text-[#ffb000] animate-pulse\">> [SYSTEM] INITIATING_SPECTER_USERNAME_RECON...</div>"; 
+            
+            try { 
+                const response = await fetch(`${BACKEND_URL}/alias`, { 
+                    method: "POST", 
+                    headers: {"Content-Type": "application/json"}, 
+                    body: JSON.stringify({username}) 
+                }); 
+                const data = await response.json(); 
+                log.innerHTML = `<div class='text-gray-500 mb-2'>> SCANNED: ${data.scanned} | FOUND: ${data.found.length}</div>`; 
+                
+                if(data.found.length > 0){ 
+                    data.found.forEach(url => { log.innerHTML += `<div class="py-1"><a href="${url}" target="_blank" class="text-[#00FF41] hover:text-[#ffb000] transition-colors">> ${url}</a></div>`; }); 
+                } else { 
+                    log.innerHTML += "<div class='text-gray-600 italic'>> NO_PROFILES_FOUND</div>"; 
+                } 
+            } catch(e) { 
+                log.innerHTML += "<div class=\"text-[#ff003c]\">> [ERROR] UPLINK_FAILED. IS_BACKEND_RUNNING?</div>"; 
+            }
+        } 
+    
+        document.addEventListener("DOMContentLoaded", () => {
+            if(document.getElementById("pass-length")) generatePass();
+        });
+    </script>
+    <script src="terminal.js?v=2"></script>
+    <script src="bg.js"></script>
+    <script src="deadswitch.js"></script>
 </body>
 </html>
