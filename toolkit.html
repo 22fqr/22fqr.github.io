@@ -201,13 +201,12 @@
             <section id="specter-scanner" class="p-8 border-4 border-[#ffb000] bg-[#050505] flex flex-col relative shadow-[8px_8px_0px_#000] outline-none">
                 <div class='flex items-center gap-4 mb-6'>
                     <div class='relative w-12 h-12 shrink-0 flex items-center justify-center'>
-                        <!-- 8-bit Satellite -->
                         <svg viewBox="0 0 16 16" fill="#ffb000" class="w-10 h-10 animate-satellite-float" style="shape-rendering: crispEdges;">
-                            <rect x="0" y="5" width="3" height="6" /> <!-- Left Panel -->
-                            <rect x="13" y="5" width="3" height="6" /> <!-- Right Panel -->
-                            <rect x="3" y="7" width="10" height="2" /> <!-- Connection -->
-                            <rect x="6" y="4" width="4" height="8" /> <!-- Body -->
-                            <rect x="7" y="1" width="2" height="3" /> <!-- Antenna -->
+                            <rect x="0" y="5" width="3" height="6" /> 
+                            <rect x="13" y="5" width="3" height="6" /> 
+                            <rect x="3" y="7" width="10" height="2" /> 
+                            <rect x="6" y="4" width="4" height="8" /> 
+                            <rect x="7" y="1" width="2" height="3" /> 
                         </svg>
                     </div>
                     <h2 class='text-[#FBFFFF] font-mono text-xl tracking-widest uppercase mt-1 arcade-header'>SPECTER [USERNAME-OSINT]</h2>
@@ -224,7 +223,6 @@
             <section id="holehe-scanner" class="p-8 border-4 border-[#8f00ff] bg-[#050505] flex flex-col relative shadow-[8px_8px_0px_#000] outline-none">
                 <div class='flex items-center gap-4 mb-6'>
                     <div class='relative w-12 h-12 shrink-0 flex items-center justify-center'>
-                        <!-- 8-bit Telescope -->
                         <svg viewBox="0 0 16 16" fill="#8f00ff" class="w-10 h-10 animate-telescope" style="shape-rendering: crispEdges;">
                             <path d="M12 2h3v3h-1V3h-2zM9 5h3v3h-1V6h-2zM6 8h3v3h-1V9H6zM3 11h3v3h-1v-2H3z" />
                             <rect x="14" y="1" width="2" height="2" opacity="0.5" />
@@ -245,7 +243,6 @@
             <section id="dns-recon" class="p-8 border-4 border-[#00f3ff] bg-[#050505] flex flex-col relative shadow-[8px_8px_0px_#000] outline-none">
                 <div class='flex items-center gap-4 mb-6'>
                     <div class='relative w-12 h-12 shrink-0 flex items-center justify-center'>
-                        <!-- 8-bit Shield -->
                         <svg viewBox="0 0 16 16" fill="#00f3ff" class="w-10 h-10 animate-shield-pulse" style="shape-rendering: crispEdges;">
                             <path d="M1 2h14v1H1zM2 3h12v1h-12zM3 4h10v1H3zM4 5h8v5h-8zM5 10h6v1h-6zM6 11h4v1h-4zM7 12h2v1h-2z" />
                         </svg>
@@ -264,7 +261,6 @@
             <section id="hash-converter" class="p-8 border-4 border-[#00FF41] bg-[#050505] flex flex-col relative shadow-[8px_8px_0px_#000] outline-none">
                 <div class='flex items-center gap-4 mb-6'>
                     <div class='relative w-12 h-12 shrink-0 flex items-center justify-center overflow-hidden border-2 border-[#00FF41]/20'>
-                        <!-- 8-bit Binary Stream -->
                         <div class="font-mono text-[10px] text-[#00FF41] leading-none animate-binary-scroll select-none pointer-events-none">
                             1010<br>0101<br>1100<br>0011<br>1010<br>0101<br>1100<br>0011<br>1010<br>0101<br>1100<br>0011
                         </div>
@@ -295,7 +291,6 @@
             <section id="vault-gen" class='p-8 border-4 border-[#ff003c] bg-[#050505] flex flex-col relative shadow-[8px_8px_0px_#000] outline-none'>
                 <div class='flex items-center gap-4 mb-6'>
                     <div class='relative w-12 h-12 shrink-0 flex items-center justify-center overflow-hidden'>
-                        <!-- 8-bit Lock -->
                         <svg viewBox="0 0 16 16" fill="#ff003c" class="w-8 h-8" style="shape-rendering: crispEdges;">
                             <path class="animate-vault-lock" d="M4 4h1v2H4zM5 3h1v1H5zM6 2h4v1H6zM10 3h1v1h-1zM11 4h1v2h-1z" />
                             <rect x="3" y="6" width="10" height="8" />
@@ -323,7 +318,6 @@
             <section id="dork-gen" class="p-8 border-4 border-[#ff00ff] bg-[#050505] flex flex-col relative shadow-[8px_8px_0px_#000] outline-none">
                 <div class='flex items-center gap-4 mb-6'>
                     <div class='relative w-12 h-12 shrink-0 flex items-center justify-center overflow-hidden'>
-                        <!-- 8-bit Spider Web -->
                         <svg viewBox="0 0 16 16" fill="none" stroke="#ff00ff" stroke-width="1" class="w-10 h-10 animate-web-pulse" style="shape-rendering: crispEdges;">
                             <path d="M0 0l16 16M16 0L0 16M8 0v16M0 8h16" />
                             <path d="M5 8l3-3 3 3-3 3-3-3z M3 8l5-5 5 5-5 5-5-5z" />
@@ -349,53 +343,14 @@
                     <button onclick="executeDork()" class="arcade-btn flex-1 py-3 bg-[#ff00ff] text-black text-[10px] mono font-black uppercase tracking-widest">SEARCH</button>
                 </div>
             </section>
-
-<script>
-function buildDork() {
-    const site = document.getElementById("dork-site").value.trim();
-    const ext = document.getElementById("dork-ext").value.trim();
-    const inurl = document.getElementById("dork-inurl").value.trim();
-    const intitle = document.getElementById("dork-intitle").value.trim();
-    const exact = document.getElementById("dork-exact").value.trim();
-
-    let dork = "";
-    if(site) dork += `site:${site} `;
-    if(ext) dork += `filetype:${ext} `;
-    if(inurl) dork += `inurl:"${inurl}" `;
-    if(intitle) dork += `intitle:"${intitle}" `;
-    if(exact) dork += `"${exact}" `;
-
-    const out = document.getElementById("dork-output");
-    out.innerText = dork.trim() || "AWAITING_PARAMETERS...";
-}
-
-function copyDork() {
-    const out = document.getElementById("dork-output").innerText;
-    if(out && out !== "AWAITING_PARAMETERS...") {
-        navigator.clipboard.writeText(out);
-        const btn = event.target;
-        const originalText = btn.innerText;
-        btn.innerText = "COPIED";
-        setTimeout(() => btn.innerText = originalText, 1500);
-    }
-}
-
-function executeDork() {
-    const out = document.getElementById("dork-output").innerText;
-    if(out && out !== "AWAITING_PARAMETERS...") {
-        window.open(`https://www.google.com/search?q=${encodeURIComponent(out)}`, '_blank');
-    }
-}
-</script>
-
         </div>
     </main>
 
     <script>
-    const PORT = "5001";
+    // GHOST OS PRODUCTION UPLINK
+    const BACKEND_URL = "https://22fqr-ghost-os-backend.hf.space";
 
     document.addEventListener("DOMContentLoaded", () => {
-        // BOOT SCREEN FADE-OUT Logic
         const boot = document.getElementById("boot-screen");
         if(boot) {
             setTimeout(() => {
@@ -403,8 +358,6 @@ function executeDork() {
                 setTimeout(() => boot.style.display = 'none', 1000);
             }, 1000);
         }
-        
-        // Default Pass
         if(document.getElementById("pass-length")) generatePass();
     });
 
@@ -416,7 +369,11 @@ function executeDork() {
         output.classList.remove("hidden");
         log.innerHTML = "<div class='text-[#00FF41] animate-pulse'>> [SYSTEM] INITIATING_MULTI-VECTOR_OSINT_SCAN...</div>";
         try {
-            const res = await fetch(`http://localhost:${PORT}/scan`, { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({email}) });
+            const res = await fetch(`${BACKEND_URL}/scan`, { 
+                method: "POST", 
+                headers: {"Content-Type": "application/json"}, 
+                body: JSON.stringify({email}) 
+            });
             const data = await res.json();
             log.innerHTML = `<div class='text-[#8f00ff] font-bold mt-4'>[FOOTPRINT_INTEL]</div>`;
             if(data.holehe?.length > 0) {
@@ -433,7 +390,11 @@ function executeDork() {
         output.classList.remove("hidden");
         log.innerHTML = "<div class=\"text-[#ffb000] animate-pulse\">> [SYSTEM] INITIATING_SPECTER_USERNAME_RECON...</div>";
         try {
-            const response = await fetch(`http://localhost:${PORT}/alias`, { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({username}) });
+            const response = await fetch(`${BACKEND_URL}/alias`, { 
+                method: "POST", 
+                headers: {"Content-Type": "application/json"}, 
+                body: JSON.stringify({username}) 
+            });
             const data = await response.json();
             log.innerHTML = `<div class='text-gray-500 mb-2'>> SCANNED: ${data.scanned} | FOUND: ${data.found.length}</div>`;
             if(data.found.length > 0){
@@ -452,7 +413,11 @@ function executeDork() {
         output.classList.remove("hidden");
         log.innerHTML = "<div class='text-[#00f3ff] animate-pulse'>> [SYSTEM] INITIATING_DNS_RECONNAISSANCE...</div>";
         try {
-            const response = await fetch(`http://localhost:${PORT}/dns`, { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({domain}) });
+            const response = await fetch(`${BACKEND_URL}/dns`, { 
+                method: "POST", 
+                headers: {"Content-Type": "application/json"}, 
+                body: JSON.stringify({domain}) 
+            });
             const data = await response.json();
             log.innerHTML = "";
             if(data.error){ log.innerHTML = `<div class="text-[#ff003c]">> [ERROR] ${data.error}</div>`; return; }
@@ -490,8 +455,41 @@ function executeDork() {
         for(let i=0;i<l;i++){r+=c.charAt(a[i]%c.length);}
         document.getElementById("pass-display").innerText=r;
     }
-    </script>
 
+    function buildDork() {
+        const site = document.getElementById("dork-site").value.trim();
+        const ext = document.getElementById("dork-ext").value.trim();
+        const inurl = document.getElementById("dork-inurl").value.trim();
+        const intitle = document.getElementById("dork-intitle").value.trim();
+        const exact = document.getElementById("dork-exact").value.trim();
+        let dork = "";
+        if(site) dork += `site:${site} `;
+        if(ext) dork += `filetype:${ext} `;
+        if(inurl) dork += `inurl:"${inurl}" `;
+        if(intitle) dork += `intitle:"${intitle}" `;
+        if(exact) dork += `"${exact}" `;
+        const out = document.getElementById("dork-output");
+        out.innerText = dork.trim() || "AWAITING_PARAMETERS...";
+    }
+
+    function copyDork() {
+        const out = document.getElementById("dork-output").innerText;
+        if(out && out !== "AWAITING_PARAMETERS...") {
+            navigator.clipboard.writeText(out);
+            const btn = event.target;
+            const originalText = btn.innerText;
+            btn.innerText = "COPIED";
+            setTimeout(() => btn.innerText = originalText, 1500);
+        }
+    }
+
+    function executeDork() {
+        const out = document.getElementById("dork-output").innerText;
+        if(out && out !== "AWAITING_PARAMETERS...") {
+            window.open(`https://www.google.com/search?q=${encodeURIComponent(out)}`, '_blank');
+        }
+    }
+    </script>
     <script src="bg.js"></script>
     <script src="deadswitch.js"></script>
 </body>
