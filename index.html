@@ -906,64 +906,7 @@
           </div>
         </a>
       </div>
-      <section id="target-acquisition" class="mb-40 relative z-10">
-        
-        <style>
-            @keyframes smoothFloat {
-                0%, 100% { transform: translateY(0px); }
-                50% { transform: translateY(-12px); }
-            }
-            @keyframes fireStep {
-                0% { transform: scale(1) translateY(0); filter: drop-shadow(0 0 8px #ffb000); }
-                33% { transform: scale(1.05) translateY(-1px); filter: drop-shadow(0 0 12px #ff8800); }
-                66% { transform: scale(0.95) translateY(1px) scaleX(1.1); filter: drop-shadow(0 0 4px #ff3300); }
-                100% { transform: scale(1) translateY(0); filter: drop-shadow(0 0 8px #ffb000); }
-            }
-            @keyframes coinRotate {
-                0% { transform: scaleX(1); }
-                25% { transform: scaleX(0.5); }
-                50% { transform: scaleX(0); }
-                75% { transform: scaleX(0.5); }
-                100% { transform: scaleX(1); }
-            }
-            @keyframes doorOpen {
-                0%, 70% { background-color: #1e3a8a; }
-                75%, 100% { background-color: #000; border-color: #3b82f6; }
-            }
-            .ghost-container {
-                position: absolute;
-                top: -40px; 
-                right: 15%;
-                animation: smoothFloat 5s ease-in-out infinite;
-                z-index: 50;
-                pointer-events: none;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                opacity: 0.8;
-                filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.4));
-            }
-            .pixel-fire {
-                display: inline-block;
-                margin-left: 8px;
-                animation: fireStep 0.4s steps(1) infinite; /* steps(1) forces choppy 8-bit frame cuts */
-                transform-origin: bottom center;
-            }
-        </style>
-
-        <div class="ghost-container hidden md:flex group">
-            <svg width="42" height="42" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" style="shape-rendering: crispEdges;">
-                <path d="M4 0h6v1H2v1H1v1H0v8h3v-1H2v-1h3v1h4v-1h3v1h-1v1h3V3h-1V2h-1V1h-2V0z" fill="#00f3ff"/>
-                <rect x="3" y="4" width="2" height="2" fill="#050505"/>
-                <rect x="9" y="4" width="2" height="2" fill="#050505"/>
-                <rect x="3" y="4" width="1" height="1" fill="#FBFFFF"/>
-                <rect x="9" y="4" width="1" height="1" fill="#FBFFFF"/>
-            </svg>
-            <div class="text-[#00f3ff] text-[8px] mt-2 tracking-widest font-mono font-bold">GHST_SYS.daemon</div>
-        </div>
-        
-        <div class="flex items-center justify-center gap-4 mb-16 pt-8">
-          <div class="h-px bg-gray-800 w-12"></div>
+      ="h-px bg-gray-800 w-12"></div>
           <h2 class="mono text-white text-lg font-bold tracking-[0.5em] uppercase text-center cursor-default">
             THM-Dashboard
           </h2>
@@ -1028,6 +971,139 @@
                              <rect x="0" y="8" width="2" height="4" fill="#ff3300"/>
                              <rect x="2" y="12" width="10" height="2" fill="#ff3300"/>
                              <rect x="4" y="14" width="6" height="2" fill="#ff3300"/>
+                             <rect x="6" y="4" width="2" height="4" fill="#ff8800"/
+                            </svg>
+                           </div>
+                          </a>
+                         </div>
+    <section id="target-acquisition" class="mb-40 relative z-10">
+        
+        <style>
+            @keyframes smoothFloat {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-12px); }
+            }
+            @keyframes fireStep {
+                0% { transform: scale(1) translateY(0); filter: drop-shadow(0 0 8px #ffb000); }
+                33% { transform: scale(1.05) translateY(-1px); filter: drop-shadow(0 0 12px #ff8800); }
+                66% { transform: scale(0.95) translateY(1px) scaleX(1.1); filter: drop-shadow(0 0 4px #ff3300); }
+                100% { transform: scale(1) translateY(0); filter: drop-shadow(0 0 8px #ffb000); }
+            }
+            @keyframes coinRotate {
+                0% { transform: scaleX(1); }
+                25% { transform: scaleX(0.5); }
+                50% { transform: scaleX(0); }
+                75% { transform: scaleX(0.5); }
+                100% { transform: scaleX(1); }
+            }
+            @keyframes doorOpen {
+                0%, 70% { background-color: #1e3a8a; }
+                75%, 100% { background-color: #000; border-color: #3b82f6; }
+            }
+            .ghost-container {
+                position: absolute;
+                top: -40px; 
+                right: 15%;
+                animation: smoothFloat 5s ease-in-out infinite;
+                z-index: 50;
+                pointer-events: none;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                opacity: 0.8;
+                filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.4));
+            }
+            .pixel-fire {
+                display: inline-block;
+                margin-left: 8px;
+                animation: fireStep 0.4s steps(1) infinite;
+                transform-origin: bottom center;
+            }
+        </style>
+
+        <div class="ghost-container hidden md:flex group">
+            <svg width="42" height="42" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" style="shape-rendering: crispEdges;">
+                <path d="M4 0h6v1H2v1H1v1H0v8h3v-1H2v-1h3v1h4v-1h3v1h-1v1h3V3h-1V2h-1V1h-2V0z" fill="#00f3ff"/>
+                <rect x="3" y="4" width="2" height="2" fill="#050505"/>
+                <rect x="9" y="4" width="2" height="2" fill="#050505"/>
+                <rect x="3" y="4" width="1" height="1" fill="#FBFFFF"/>
+                <rect x="9" y="4" width="1" height="1" fill="#FBFFFF"/>
+            </svg>
+            <div class="text-[#00f3ff] text-[8px] mt-2 tracking-widest font-mono font-bold">GHST_SYS.daemon</div>
+        </div>
+        
+        <div class="flex items-center justify-center gap-4 mb-16 pt-8">
+          <div class="h-px bg-gray-800 w-12"></div>
+          <h2 class="mono text-white text-lg font-bold tracking-[0.5em] uppercase text-center cursor-default">
+            THM-Dashboard
+          </h2>
+          <div class="h-px bg-gray-800 w-12"></div>
+        </div>
+
+        <div class="flex flex-col lg:grid lg:grid-cols-12 gap-8 max-w-6xl mx-auto relative z-20">
+          
+          <div class="lg:col-span-4 border border-[#00f3ff]/30 bg-[#050505] p-6 shadow-[0_0_30px_rgba(0,243,255,0.05)] flex flex-col relative group overflow-hidden">
+             <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#00f3ff] to-transparent opacity-50"></div>
+             
+             <div class="flex items-center gap-3 mb-8">
+                <div class="w-16 h-12 flex flex-col items-center justify-center relative overflow-hidden">
+                    <svg viewBox="0 0 16 16" width="48" height="48" fill="#fff" class="mb-0.5 relative z-10">
+                        <path d="M4 6h2v1H4zM6 5h2v1H6zM8 6h2v1H8zM4 7h6v2H4zM3 8h8v2H3zM4 10h6v1H4z" />
+                    </svg>
+                    <svg viewBox="0 0 16 16" width="24" height="24" class="lightning-strike absolute bottom-1 z-0 translate-y-3">
+                        <path d="M7 0h2l-2 5h3l-4 6v-4H5l2-4H5z" fill="#FFC700"/>
+                    </svg>
+                </div>
+                <h3 class="text-[#00f3ff] font-mono text-lg tracking-widest font-bold">[THM_UPLINK]</h3>
+             </div>
+             
+             <div class="space-y-8 flex-grow">
+                <div>
+                   <div class="flex justify-between items-end text-[10px] sm:text-xs mono text-gray-500 mb-2">
+                       <span class="tracking-tighter sm:tracking-normal truncate mr-2">HACKER_CLASS</span>
+                       <span class="text-white font-bold tracking-widest shrink-0">0xB[MASTER]</span>
+                   </div>
+                   <div class="w-full bg-[#0a0a0a] h-1.5 border border-white/10"><div class="bg-[#00f3ff] h-full w-[85%] shadow-[0_0_10px_#00f3ff]"></div></div>
+                </div>
+                <div>
+                   <div class="flex justify-between items-end text-[10px] sm:text-xs mono text-gray-500 mb-2">
+                       <span class="tracking-tighter sm:tracking-normal truncate mr-2">SYSTEMS_COMPROMISED</span>
+                       <span class="text-white font-bold shrink-0">142</span>
+                   </div>
+                   <div class="w-full bg-[#0a0a0a] h-1.5 border border-white/10"><div class="bg-[#00f3ff] h-full w-[60%] shadow-[0_0_10px_#00f3ff]"></div></div>
+                </div>
+                
+                 <div class="flex justify-between items-center border-t border-white/10 pt-6 text-[10px] sm:text-xs mono">
+                    <span class="text-gray-500 tracking-widest">TOTAL_POINTS:</span>
+                    <div class="flex items-center gap-2">
+                        <span class="text-white font-bold">15,697</span>
+                        <div class="w-4 h-4 bg-yellow-500 rounded-full shrink-0" style="animation: coinRotate 1s linear infinite;"></div>
+                    </div>
+                 </div>
+
+                 <div class="flex justify-between items-center border-t border-white/10 pt-4 mt-4 text-[10px] sm:text-xs mono">
+                    <span class="text-gray-500 tracking-widest">ROOMS_CLEARED:</span>
+                    <div class="flex items-center gap-2">
+                        <span class="text-white font-bold">165</span>
+                        <div class="door-icon w-4 h-5 bg-blue-900 border-2 border-white relative overflow-hidden shrink-0" style="animation: doorOpen 4s steps(1) infinite;">
+                            <div class="absolute inset-0 bg-black opacity-0 transition-opacity duration-300"></div>
+                        </div>
+                    </div>
+                 </div>
+
+                 <div class="flex justify-between items-center border-t border-white/10 pt-6 text-[10px] sm:text-xs mono mt-auto">
+                    <span class="text-gray-500 tracking-widest">ACTIVE_STREAK:</span>
+                    <div class="flex items-center shrink-0">
+                        <span class="text-[#ffb000] font-black text-xs sm:text-sm">14_DAYS</span>
+                        <svg width="14" height="16" viewBox="0 0 14 16" xmlns="http://www.w3.org/2000/svg" class="pixel-fire ml-2" style="shape-rendering: crispEdges;">
+                             <rect x="6" y="0" width="2" height="2" fill="#ff3300"/>
+                             <rect x="4" y="2" width="4" height="2" fill="#ff3300"/>
+                             <rect x="8" y="4" width="2" height="2" fill="#ff3300"/>
+                             <rect x="2" y="4" width="2" height="4" fill="#ff3300"/>
+                             <rect x="10" y="6" width="2" height="4" fill="#ff3300"/>
+                             <rect x="0" y="8" width="2" height="4" fill="#ff3300"/>
+                             <rect x="2" y="12" width="10" height="2" fill="#ff3300"/>
+                             <rect x="4" y="14" width="6" height="2" fill="#ff3300"/>
                              <rect x="6" y="4" width="2" height="4" fill="#ff8800"/>
                              <rect x="4" y="8" width="6" height="4" fill="#ff8800"/>
                              <rect x="8" y="6" width="2" height="2" fill="#ff8800"/>
@@ -1040,10 +1116,10 @@
              </div>
           </div>
 
-          <div class="lg:col-span-8 border border-white/10 bg-[#050505] p-6 relative">
-              <h3 class="text-white font-mono text-xs tracking-[0.3em] font-bold mb-6 uppercase flex justify-between">
+          <div class="lg:col-span-8 border border-white/10 bg-[#050505] p-4 sm:p-6 relative">
+              <h3 class="text-white font-mono text-[10px] sm:text-xs tracking-[0.3em] font-bold mb-6 uppercase flex justify-between">
                 <span>Recent_Compromises</span>
-                <span class="text-[#00FF41] animate-pulse">[LIVE_FEED]</span>
+                <span class="text-[#00FF41] animate-pulse shrink-0 ml-2">[LIVE_FEED]</span>
               </h3>
               
               <div class="space-y-3">
@@ -1052,9 +1128,9 @@
                        <span class="text-[#FBFFFF] font-mono font-bold text-sm group-hover:text-[#00FF41] transition-colors">Kenobi</span>
                        <span class="text-gray-500 font-mono text-[10px] mt-1">10.10.34.112 // Linux // Samba_Enum</span>
                     </div>
-                    <div class="flex items-center gap-6 mt-3 sm:mt-0">
+                    <div class="flex items-center justify-between w-full sm:w-auto mt-4 sm:mt-0 pt-3 sm:pt-0 border-t border-white/5 sm:border-0">
                        <span class="text-[#00FF41] font-mono text-[9px] border border-[#00FF41]/30 px-2 py-1 bg-[#00FF41]/5 tracking-widest">EASY</span>
-                       <span class="text-[#8f00ff] font-mono text-[10px] font-bold tracking-widest w-20 text-right">[ROOTED]</span>
+                       <span class="text-[#8f00ff] font-mono text-[10px] font-bold tracking-widest text-right">[ROOTED]</span>
                     </div>
                  </div>
                  
@@ -1063,9 +1139,9 @@
                        <span class="text-[#FBFFFF] font-mono font-bold text-sm group-hover:text-[#ffb000] transition-colors">Retro</span>
                        <span class="text-gray-500 font-mono text-[10px] mt-1">10.10.11.89 // Windows // IIS_Exploit</span>
                     </div>
-                    <div class="flex items-center gap-6 mt-3 sm:mt-0">
+                    <div class="flex items-center justify-between w-full sm:w-auto mt-4 sm:mt-0 pt-3 sm:pt-0 border-t border-white/5 sm:border-0">
                        <span class="text-[#ffb000] font-mono text-[9px] border border-[#ffb000]/30 px-2 py-1 bg-[#ffb000]/5 tracking-widest">MEDIUM</span>
-                       <span class="text-[#8f00ff] font-mono text-[10px] font-bold tracking-widest w-20 text-right">[ROOTED]</span>
+                       <span class="text-[#8f00ff] font-mono text-[10px] font-bold tracking-widest text-right">[ROOTED]</span>
                     </div>
                  </div>
 
@@ -1074,9 +1150,9 @@
                        <span class="text-[#FBFFFF] font-mono font-bold text-sm group-hover:text-[#ff003c] transition-colors">Daily Bugle</span>
                        <span class="text-gray-500 font-mono text-[10px] mt-1">10.10.55.201 // Linux // Joomla_SQLi</span>
                     </div>
-                    <div class="flex items-center gap-6 mt-3 sm:mt-0">
+                    <div class="flex items-center justify-between w-full sm:w-auto mt-4 sm:mt-0 pt-3 sm:pt-0 border-t border-white/5 sm:border-0">
                        <span class="text-[#ff003c] font-mono text-[9px] border border-[#ff003c]/30 px-2 py-1 bg-[#ff003c]/5 tracking-widest">HARD</span>
-                       <span class="text-[#8f00ff] font-mono text-[10px] font-bold tracking-widest w-20 text-right">[ROOTED]</span>
+                       <span class="text-[#8f00ff] font-mono text-[10px] font-bold tracking-widest text-right">[ROOTED]</span>
                     </div>
                  </div>
 
@@ -1086,16 +1162,16 @@
                        <span class="text-[#FBFFFF] font-mono font-bold text-sm">Relevant</span>
                        <span class="text-gray-500 font-mono text-[10px] mt-1">10.10.X.X // Windows // PrintSpoofer</span>
                     </div>
-                    <div class="flex items-center gap-6 mt-3 sm:mt-0 relative z-10">
+                    <div class="flex items-center justify-between w-full sm:w-auto mt-4 sm:mt-0 pt-3 sm:pt-0 border-t border-white/5 sm:border-0 relative z-10">
                        <span class="text-[#ffb000] font-mono text-[9px] border border-[#ffb000]/30 px-2 py-1 bg-[#ffb000]/5 tracking-widest">MEDIUM</span>
-                       <span class="text-[#00f3ff] animate-pulse font-mono text-[10px] font-bold tracking-widest w-20 text-right">[SCANNING]</span>
+                       <span class="text-[#00f3ff] animate-pulse font-mono text-[10px] font-bold tracking-widest text-right">[SCANNING]</span>
                     </div>
                  </div>
               </div>
           </div>
         </div>
-      </section>
-
+            </section>
+                          
       <section id="social-uplink" class="mb-40 relative z-10">
         <style>
             .social-card {
